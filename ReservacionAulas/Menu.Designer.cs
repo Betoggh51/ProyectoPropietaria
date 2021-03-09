@@ -51,7 +51,7 @@ namespace ReservacionAulas
             this.mantenimientoToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(20, 60);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(610, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(610, 30);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -66,7 +66,7 @@ namespace ReservacionAulas
             this.empleadosToolStripMenuItem,
             this.reservacionHorasToolStripMenuItem});
             this.mantenimientoToolStripMenuItem.Name = "mantenimientoToolStripMenuItem";
-            this.mantenimientoToolStripMenuItem.Size = new System.Drawing.Size(124, 24);
+            this.mantenimientoToolStripMenuItem.Size = new System.Drawing.Size(124, 26);
             this.mantenimientoToolStripMenuItem.Text = "Mantenimiento";
             // 
             // campusToolStripMenuItem
@@ -123,9 +123,9 @@ namespace ReservacionAulas
             this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Location = new System.Drawing.Point(20, 88);
+            this.pictureBox1.Location = new System.Drawing.Point(20, 90);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(610, 333);
+            this.pictureBox1.Size = new System.Drawing.Size(610, 331);
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             // 

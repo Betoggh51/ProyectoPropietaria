@@ -26,14 +26,10 @@ namespace ReservacionAulas
             con.Open();
 
             cmbCriterioEdificio.SelectedIndex = 0;
+            CargarDataGridView();
 
-            string consulta = "SELECT Identificador, Descripcion, Estado FROM CAMPUS";
-            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(consulta, con);
-            DataSet ds = new DataSet();
-            sqlDataAdapter.Fill(ds, consulta);
-            
-            // Falta llenar el combobox de campus con todos los campus que esten ACTIVOS
-            // Guillermo nos podria explicar
+            LlenarLista();
+
         }
 
         private void CargarDataGridView()
@@ -41,7 +37,7 @@ namespace ReservacionAulas
             try
             {
                 string consulta = "SELECT * FROM EDIFICIOS ";
-                consulta += " WHERE " + cmbCriterioEdificio.Text + " LIKE '%" + txtBusquedaEdificio + "%'";
+                consulta += " WHERE " + cmbCriterioEdificio.Text + " LIKE '%" + txtBusquedaEdificio.Text + "%'";
 
                 SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(consulta, con);
                 DataTable dataTable = new DataTable();
@@ -69,13 +65,13 @@ namespace ReservacionAulas
             {
                 if (modalidad == "c")
                 {
-                    string consulta = "INSERT INTO EDIFICIOS (Descripcion, Campus, Estado) VALUES('";
-                    consulta += txtDescripcion.Text + "',' " + cmbCampus.Text + "', '" + cmbEstado.Text + "')";
+                    string consulta = "INSERT INTO EDIFICIOS (Descripcion, Identificador_Campus, Estado) VALUES('";
+                    consulta += txtDescripcion.Text + "', " + cmbCampus.SelectedValue + ", '" + cmbEstado.Text + "')";
 
                     SqlCommand comando = new SqlCommand(consulta, con);
                     comando.ExecuteNonQuery();
 
-                    CargarDataGridView();
+                    dgvEdificio.Refresh();
                     MessageBox.Show("Edificio registrado exitosamente");
                 }
                 else
@@ -83,7 +79,7 @@ namespace ReservacionAulas
                     DataGridViewRow fila = this.dgvEdificio.SelectedRows[0];
                     string id = fila.Cells[0].Value.ToString();
 
-                    string consulta = "UPDATE EDIFICIOS SET Descripcion = '" + txtDescripcion.Text + "', Identificador_Campus = '" + cmbCampus.Text;
+                    string consulta = "UPDATE EDIFICIOS SET Descripcion = '" + txtDescripcion.Text + "', Identificador_Campus = '" + cmbCampus.SelectedValue;
                     consulta += "', Estado  = '" + cmbEstado.Text + "'";
                     consulta += " WHERE Identificador = '" + id + "'";
 
@@ -124,27 +120,61 @@ namespace ReservacionAulas
 
         private void picEliminar_Click(object sender, EventArgs e)
         {
-            try
+            DialogResult result = MessageBox.Show("¿Seguro que desea eliminar este registro?", "Eliminar", MessageBoxButtons.YesNo);
+            if(result == DialogResult.Yes)
             {
-                DataGridViewRow fila = this.dgvEdificio.SelectedRows[0];
-                string id = fila.Cells[0].Value.ToString();
+                try
+                {
+                    DataGridViewRow fila = this.dgvEdificio.SelectedRows[0];
+                    string id = fila.Cells[0].Value.ToString();
 
-                string consulta = "DELETE FROM EDIFICIOS WHERE Identificador = '" + id + "'";
+                    string consulta = "DELETE FROM EDIFICIOS WHERE Identificador = '" + id + "'";
 
-                SqlCommand comando = new SqlCommand(consulta, con);
-                comando.ExecuteNonQuery();
+                    SqlCommand comando = new SqlCommand(consulta, con);
+                    comando.ExecuteNonQuery();
 
-                MessageBox.Show("Edificio eliminado exitosamente");
-                CargarDataGridView();
+                    MessageBox.Show("Edificio eliminado exitosamente");
+                    CargarDataGridView();
 
-                txtDescripcion.Text = "";
-                cmbCampus.Text = "";
-                cmbEstado.Text = "";
+                    txtDescripcion.Text = "";
+                    cmbCampus.Text = "";
+                    cmbEstado.Text = "";
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Debe seleccionar un registro para eliminarlo");
+                }
             }
-            catch (Exception)
-            {
-                MessageBox.Show("Debe seleccionar un registro para eliminarlo");
-            }
+        }
+
+        private void picLimpiar_Click(object sender, EventArgs e)
+        {
+            txtDescripcion.Text = "";
+            cmbCampus.Text = "";
+            cmbEstado.Text = "";
+
+            modalidad = "c";
+
+            dgvEdificio.ClearSelection();
+        }
+
+        private void LlenarLista()
+        {
+            string sql = "SELECT identificador, descripcion FROM CAMPUS WHERE ESTADO = 'ACTIVO' ORDER BY identificador";
+            SqlDataAdapter dataAdapter = new SqlDataAdapter(sql, con);
+            DataTable table = new DataTable();
+            dataAdapter.Fill(table);
+
+            cmbCampus.DataSource = table;
+            cmbCampus.DisplayMember = "descripcion";
+            cmbCampus.ValueMember = "identificador";
+
+            cmbCampus.SelectedIndex = 0;
+        }
+
+        private void picBuscar_Click(object sender, EventArgs e)
+        {
+            CargarDataGridView();
         }
     }
 }

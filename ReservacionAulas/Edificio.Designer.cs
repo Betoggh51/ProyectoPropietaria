@@ -44,10 +44,12 @@ namespace ReservacionAulas
             this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cmbCampus = new System.Windows.Forms.ComboBox();
+            this.picLimpiar = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.picBuscar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picGuardar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picEliminar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEdificio)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picLimpiar)).BeginInit();
             this.SuspendLayout();
             // 
             // label5
@@ -69,12 +71,13 @@ namespace ReservacionAulas
             this.picBuscar.Size = new System.Drawing.Size(56, 54);
             this.picBuscar.TabIndex = 30;
             this.picBuscar.TabStop = false;
+            this.picBuscar.Click += new System.EventHandler(this.picBuscar_Click);
             // 
             // picGuardar
             // 
             this.picGuardar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("picGuardar.BackgroundImage")));
             this.picGuardar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picGuardar.Location = new System.Drawing.Point(112, 462);
+            this.picGuardar.Location = new System.Drawing.Point(150, 462);
             this.picGuardar.Name = "picGuardar";
             this.picGuardar.Size = new System.Drawing.Size(56, 54);
             this.picGuardar.TabIndex = 29;
@@ -85,7 +88,7 @@ namespace ReservacionAulas
             // 
             this.picEliminar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("picEliminar.BackgroundImage")));
             this.picEliminar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picEliminar.Location = new System.Drawing.Point(184, 462);
+            this.picEliminar.Location = new System.Drawing.Point(222, 462);
             this.picEliminar.Name = "picEliminar";
             this.picEliminar.Size = new System.Drawing.Size(56, 54);
             this.picEliminar.TabIndex = 28;
@@ -96,7 +99,7 @@ namespace ReservacionAulas
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe MDL2 Assets", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(227, 100);
+            this.label4.Location = new System.Drawing.Point(222, 100);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(161, 24);
             this.label4.TabIndex = 26;
@@ -106,7 +109,7 @@ namespace ReservacionAulas
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe MDL2 Assets", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(561, 100);
+            this.label3.Location = new System.Drawing.Point(556, 100);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(96, 24);
             this.label3.TabIndex = 25;
@@ -121,7 +124,7 @@ namespace ReservacionAulas
             "Descripcion",
             "Campus",
             "Estado"});
-            this.cmbCriterioEdificio.Location = new System.Drawing.Point(399, 105);
+            this.cmbCriterioEdificio.Location = new System.Drawing.Point(394, 105);
             this.cmbCriterioEdificio.Name = "cmbCriterioEdificio";
             this.cmbCriterioEdificio.Size = new System.Drawing.Size(156, 24);
             this.cmbCriterioEdificio.TabIndex = 24;
@@ -195,11 +198,23 @@ namespace ReservacionAulas
             this.cmbCampus.Size = new System.Drawing.Size(175, 24);
             this.cmbCampus.TabIndex = 32;
             // 
+            // picLimpiar
+            // 
+            this.picLimpiar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("picLimpiar.BackgroundImage")));
+            this.picLimpiar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.picLimpiar.Location = new System.Drawing.Point(76, 462);
+            this.picLimpiar.Name = "picLimpiar";
+            this.picLimpiar.Size = new System.Drawing.Size(56, 54);
+            this.picLimpiar.TabIndex = 33;
+            this.picLimpiar.TabStop = false;
+            this.picLimpiar.Click += new System.EventHandler(this.picLimpiar_Click);
+            // 
             // Edificio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(927, 539);
+            this.Controls.Add(this.picLimpiar);
             this.Controls.Add(this.cmbCampus);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.picBuscar);
@@ -222,6 +237,7 @@ namespace ReservacionAulas
             ((System.ComponentModel.ISupportInitialize)(this.picGuardar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picEliminar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEdificio)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picLimpiar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -243,5 +259,6 @@ namespace ReservacionAulas
         private System.Windows.Forms.TextBox txtDescripcion;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cmbCampus;
+        private System.Windows.Forms.PictureBox picLimpiar;
     }
 }

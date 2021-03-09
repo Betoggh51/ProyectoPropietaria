@@ -42,7 +42,7 @@ namespace ReservacionAulas
         {
             try
             {
-                string consulta = "SELECT * FROM TIPOS_AULA ";
+                string consulta = "SELECT * FROM TIPOS_AULAS ";
                 consulta += " WHERE " + cmbCriterioBusqueda.Text + " LIKE '%" + txtBusqueda.Text + "%'";
 
                 SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(consulta, con);
@@ -91,8 +91,8 @@ namespace ReservacionAulas
             {
                 if (modalidad == "c")
                 {
-                    string consulta = "INSERT INTO Tipos_Aula (Descripcion, Estado) VALUES('";
-                    consulta += txtDescripcionTipoAula.Text + "',' " + "'" + cmbEstadoTipoAula.Text + "')";
+                    string consulta = "INSERT INTO Tipos_Aulas (Descripcion, Estado) VALUES('";
+                    consulta += txtDescripcionTipoAula.Text + "',' " + cmbEstadoTipoAula.Text + "')";
 
                     SqlCommand comando = new SqlCommand(consulta, con);
                     comando.ExecuteNonQuery();
@@ -105,8 +105,8 @@ namespace ReservacionAulas
                     DataGridViewRow fila = this.dgvTipoAula.SelectedRows[0];
                     string id = fila.Cells[0].Value.ToString();
 
-                    string consulta = "UPDATE EDIFICIOS SET Descripcion = '" + txtDescripcionTipoAula.Text + "'";
-                    consulta += "', Estado  = '" + cmbEstadoTipoAula.Text + "'";
+                    string consulta = "UPDATE Tipos_Aulas SET Descripcion = '" + txtDescripcionTipoAula.Text + "'";
+                    consulta += ", Estado  = '" + cmbEstadoTipoAula.Text + "'";
                     consulta += " WHERE Identificador = '" + id + "'";
 
                     SqlCommand comando = new SqlCommand(consulta, con);
@@ -129,26 +129,39 @@ namespace ReservacionAulas
 
         private void picEliminar_Click(object sender, EventArgs e)
         {
-            try
+            DialogResult result = MessageBox.Show("¿Seguro que desea eliminar este registro?", "Eliminar", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
             {
-                DataGridViewRow fila = this.dgvTipoAula.SelectedRows[0];
-                string id = fila.Cells[0].Value.ToString();
+                try
+                {
+                    DataGridViewRow fila = this.dgvTipoAula.SelectedRows[0];
+                    string id = fila.Cells[0].Value.ToString();
 
-                string consulta = "DELETE FROM Tipos_Aula WHERE Identificador = '" + id + "'";
+                    string consulta = "DELETE FROM Tipos_Aulas WHERE Identificador = '" + id + "'";
 
-                SqlCommand comando = new SqlCommand(consulta, con);
-                comando.ExecuteNonQuery();
+                    SqlCommand comando = new SqlCommand(consulta, con);
+                    comando.ExecuteNonQuery();
 
-                MessageBox.Show("Edificio eliminado exitosamente");
-                CargarDataGridView();
+                    MessageBox.Show("Edificio eliminado exitosamente");
+                    CargarDataGridView();
 
-                txtDescripcionTipoAula.Text = "";
-                cmbEstadoTipoAula.Text = "";
+                    txtDescripcionTipoAula.Text = "";
+                    cmbEstadoTipoAula.Text = "";
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Debe seleccionar un registro para eliminarlo");
+                }
             }
-            catch (Exception)
-            {
-                MessageBox.Show("Debe seleccionar un registro para eliminarlo");
-            }
+        }
+
+        private void picLimpiar_Click(object sender, EventArgs e)
+        {
+            txtDescripcionTipoAula.Text = "";
+            cmbEstadoTipoAula.Text = "";
+            modalidad = "c";
+
+            dgvTipoAula.ClearSelection();
         }
     }
 }

@@ -31,27 +31,29 @@ namespace ReservacionAulas
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Usuario));
             this.label1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.cmbTipoUsuario = new System.Windows.Forms.ComboBox();
+            this.txtNombre = new System.Windows.Forms.TextBox();
+            this.dgvUsuarios = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtCedula = new System.Windows.Forms.TextBox();
+            this.txtCarnet = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.cmbEstado = new System.Windows.Forms.ComboBox();
+            this.picBuscar = new System.Windows.Forms.PictureBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.txtBusqueda = new System.Windows.Forms.TextBox();
+            this.picGuardar = new System.Windows.Forms.PictureBox();
+            this.picEliminar = new System.Windows.Forms.PictureBox();
+            this.cmbCriterioBusqueda = new System.Windows.Forms.ComboBox();
+            this.picLimpiar = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvUsuarios)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBuscar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picGuardar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picEliminar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picLimpiar)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -64,31 +66,39 @@ namespace ReservacionAulas
             this.label1.TabIndex = 0;
             this.label1.Text = "Nombre:";
             // 
-            // comboBox1
+            // cmbTipoUsuario
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(182, 265);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(135, 24);
-            this.comboBox1.TabIndex = 1;
+            this.cmbTipoUsuario.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbTipoUsuario.FormattingEnabled = true;
+            this.cmbTipoUsuario.Items.AddRange(new object[] {
+            "Estudiante",
+            "Empleado",
+            "Profesor"});
+            this.cmbTipoUsuario.Location = new System.Drawing.Point(185, 265);
+            this.cmbTipoUsuario.Name = "cmbTipoUsuario";
+            this.cmbTipoUsuario.Size = new System.Drawing.Size(135, 24);
+            this.cmbTipoUsuario.TabIndex = 1;
             // 
-            // textBox1
+            // txtNombre
             // 
-            this.textBox1.Location = new System.Drawing.Point(163, 160);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(154, 22);
-            this.textBox1.TabIndex = 2;
+            this.txtNombre.Location = new System.Drawing.Point(166, 160);
+            this.txtNombre.Name = "txtNombre";
+            this.txtNombre.Size = new System.Drawing.Size(154, 22);
+            this.txtNombre.TabIndex = 2;
             // 
-            // dataGridView1
+            // dgvUsuarios
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(366, 160);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(660, 255);
-            this.dataGridView1.TabIndex = 3;
+            this.dgvUsuarios.AllowUserToAddRows = false;
+            this.dgvUsuarios.AllowUserToDeleteRows = false;
+            this.dgvUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvUsuarios.Location = new System.Drawing.Point(366, 160);
+            this.dgvUsuarios.Name = "dgvUsuarios";
+            this.dgvUsuarios.ReadOnly = true;
+            this.dgvUsuarios.RowHeadersWidth = 51;
+            this.dgvUsuarios.RowTemplate.Height = 24;
+            this.dgvUsuarios.Size = new System.Drawing.Size(660, 255);
+            this.dgvUsuarios.TabIndex = 3;
+            this.dgvUsuarios.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUsuarios_CellDoubleClick);
             // 
             // label2
             // 
@@ -120,19 +130,19 @@ namespace ReservacionAulas
             this.label4.TabIndex = 6;
             this.label4.Text = "Cédula:";
             // 
-            // textBox2
+            // txtCedula
             // 
-            this.textBox2.Location = new System.Drawing.Point(163, 192);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(154, 22);
-            this.textBox2.TabIndex = 7;
+            this.txtCedula.Location = new System.Drawing.Point(166, 192);
+            this.txtCedula.Name = "txtCedula";
+            this.txtCedula.Size = new System.Drawing.Size(154, 22);
+            this.txtCedula.TabIndex = 7;
             // 
-            // textBox3
+            // txtCarnet
             // 
-            this.textBox3.Location = new System.Drawing.Point(163, 229);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(154, 22);
-            this.textBox3.TabIndex = 8;
+            this.txtCarnet.Location = new System.Drawing.Point(166, 229);
+            this.txtCarnet.Name = "txtCarnet";
+            this.txtCarnet.Size = new System.Drawing.Size(154, 22);
+            this.txtCarnet.TabIndex = 8;
             // 
             // label5
             // 
@@ -144,30 +154,34 @@ namespace ReservacionAulas
             this.label5.TabIndex = 9;
             this.label5.Text = "Estado:";
             // 
-            // comboBox2
+            // cmbEstado
             // 
-            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(163, 302);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(154, 24);
-            this.comboBox2.TabIndex = 10;
+            this.cmbEstado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbEstado.FormattingEnabled = true;
+            this.cmbEstado.Items.AddRange(new object[] {
+            "Activo",
+            "Inactivo"});
+            this.cmbEstado.Location = new System.Drawing.Point(166, 302);
+            this.cmbEstado.Name = "cmbEstado";
+            this.cmbEstado.Size = new System.Drawing.Size(154, 24);
+            this.cmbEstado.TabIndex = 10;
             // 
-            // pictureBox3
+            // picBuscar
             // 
-            this.pictureBox3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox3.BackgroundImage")));
-            this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox3.Location = new System.Drawing.Point(970, 85);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(56, 54);
-            this.pictureBox3.TabIndex = 40;
-            this.pictureBox3.TabStop = false;
+            this.picBuscar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("picBuscar.BackgroundImage")));
+            this.picBuscar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.picBuscar.Location = new System.Drawing.Point(970, 85);
+            this.picBuscar.Name = "picBuscar";
+            this.picBuscar.Size = new System.Drawing.Size(56, 54);
+            this.picBuscar.TabIndex = 40;
+            this.picBuscar.TabStop = false;
+            this.picBuscar.Click += new System.EventHandler(this.picBuscar_Click);
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Segoe MDL2 Assets", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(356, 95);
+            this.label9.Location = new System.Drawing.Point(349, 95);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(161, 24);
             this.label9.TabIndex = 39;
@@ -177,79 +191,101 @@ namespace ReservacionAulas
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Segoe MDL2 Assets", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(683, 95);
+            this.label10.Location = new System.Drawing.Point(678, 95);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(96, 24);
             this.label10.TabIndex = 38;
             this.label10.Text = "Busqueda:";
             // 
-            // textBox5
+            // txtBusqueda
             // 
-            this.textBox5.Location = new System.Drawing.Point(781, 100);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(183, 22);
-            this.textBox5.TabIndex = 36;
+            this.txtBusqueda.Location = new System.Drawing.Point(780, 100);
+            this.txtBusqueda.Name = "txtBusqueda";
+            this.txtBusqueda.Size = new System.Drawing.Size(183, 22);
+            this.txtBusqueda.TabIndex = 36;
             // 
-            // pictureBox2
+            // picGuardar
             // 
-            this.pictureBox2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.BackgroundImage")));
-            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox2.Location = new System.Drawing.Point(110, 361);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(56, 54);
-            this.pictureBox2.TabIndex = 47;
-            this.pictureBox2.TabStop = false;
+            this.picGuardar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("picGuardar.BackgroundImage")));
+            this.picGuardar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.picGuardar.Location = new System.Drawing.Point(159, 361);
+            this.picGuardar.Name = "picGuardar";
+            this.picGuardar.Size = new System.Drawing.Size(56, 54);
+            this.picGuardar.TabIndex = 47;
+            this.picGuardar.TabStop = false;
+            this.picGuardar.Click += new System.EventHandler(this.picGuardar_Click);
             // 
-            // pictureBox1
+            // picEliminar
             // 
-            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(182, 361);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(56, 54);
-            this.pictureBox1.TabIndex = 46;
-            this.pictureBox1.TabStop = false;
+            this.picEliminar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("picEliminar.BackgroundImage")));
+            this.picEliminar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.picEliminar.Location = new System.Drawing.Point(231, 361);
+            this.picEliminar.Name = "picEliminar";
+            this.picEliminar.Size = new System.Drawing.Size(56, 54);
+            this.picEliminar.TabIndex = 46;
+            this.picEliminar.TabStop = false;
+            this.picEliminar.Click += new System.EventHandler(this.picEliminar_Click);
             // 
-            // comboBox3
+            // cmbCriterioBusqueda
             // 
-            this.comboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(524, 100);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(153, 24);
-            this.comboBox3.TabIndex = 48;
+            this.cmbCriterioBusqueda.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbCriterioBusqueda.FormattingEnabled = true;
+            this.cmbCriterioBusqueda.Items.AddRange(new object[] {
+            "Identificador",
+            "Nombre",
+            "Cedula",
+            "No_Carnet",
+            "Tipo_Usuario",
+            "Estado"});
+            this.cmbCriterioBusqueda.Location = new System.Drawing.Point(517, 100);
+            this.cmbCriterioBusqueda.Name = "cmbCriterioBusqueda";
+            this.cmbCriterioBusqueda.Size = new System.Drawing.Size(153, 24);
+            this.cmbCriterioBusqueda.TabIndex = 48;
+            // 
+            // picLimpiar
+            // 
+            this.picLimpiar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("picLimpiar.BackgroundImage")));
+            this.picLimpiar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.picLimpiar.Location = new System.Drawing.Point(90, 361);
+            this.picLimpiar.Name = "picLimpiar";
+            this.picLimpiar.Size = new System.Drawing.Size(56, 54);
+            this.picLimpiar.TabIndex = 49;
+            this.picLimpiar.TabStop = false;
+            this.picLimpiar.Click += new System.EventHandler(this.picLimpiar_Click);
             // 
             // Usuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1052, 452);
-            this.Controls.Add(this.comboBox3);
-            this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.pictureBox3);
+            this.Controls.Add(this.picLimpiar);
+            this.Controls.Add(this.cmbCriterioBusqueda);
+            this.Controls.Add(this.picGuardar);
+            this.Controls.Add(this.picEliminar);
+            this.Controls.Add(this.picBuscar);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.txtBusqueda);
+            this.Controls.Add(this.cmbEstado);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.txtCarnet);
+            this.Controls.Add(this.txtCedula);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.dgvUsuarios);
+            this.Controls.Add(this.txtNombre);
+            this.Controls.Add(this.cmbTipoUsuario);
             this.Controls.Add(this.label1);
             this.Name = "Usuario";
             this.Text = "Usuario";
             this.TextAlign = MetroFramework.Forms.MetroFormTextAlign.Center;
             this.Load += new System.EventHandler(this.Usuario_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvUsuarios)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBuscar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picGuardar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picEliminar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picLimpiar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -258,22 +294,23 @@ namespace ReservacionAulas
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.ComboBox cmbTipoUsuario;
+        private System.Windows.Forms.TextBox txtNombre;
+        private System.Windows.Forms.DataGridView dgvUsuarios;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtCedula;
+        private System.Windows.Forms.TextBox txtCarnet;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.ComboBox cmbEstado;
+        private System.Windows.Forms.PictureBox picBuscar;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.TextBox txtBusqueda;
+        private System.Windows.Forms.PictureBox picGuardar;
+        private System.Windows.Forms.PictureBox picEliminar;
+        private System.Windows.Forms.ComboBox cmbCriterioBusqueda;
+        private System.Windows.Forms.PictureBox picLimpiar;
     }
 }

@@ -44,10 +44,12 @@ namespace ReservacionAulas
             this.picBuscarCampus = new System.Windows.Forms.PictureBox();
             this.txtDireccionCampus = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.picLimpiar = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCampus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picEliminarCampus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picGuardarCampus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBuscarCampus)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picLimpiar)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -148,7 +150,7 @@ namespace ReservacionAulas
             // 
             this.picEliminarCampus.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("picEliminarCampus.BackgroundImage")));
             this.picEliminarCampus.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picEliminarCampus.Location = new System.Drawing.Point(188, 462);
+            this.picEliminarCampus.Location = new System.Drawing.Point(208, 462);
             this.picEliminarCampus.Name = "picEliminarCampus";
             this.picEliminarCampus.Size = new System.Drawing.Size(56, 54);
             this.picEliminarCampus.TabIndex = 13;
@@ -160,7 +162,7 @@ namespace ReservacionAulas
             this.picGuardarCampus.BackColor = System.Drawing.Color.White;
             this.picGuardarCampus.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("picGuardarCampus.BackgroundImage")));
             this.picGuardarCampus.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picGuardarCampus.Location = new System.Drawing.Point(116, 462);
+            this.picGuardarCampus.Location = new System.Drawing.Point(136, 462);
             this.picGuardarCampus.Name = "picGuardarCampus";
             this.picGuardarCampus.Size = new System.Drawing.Size(56, 54);
             this.picGuardarCampus.TabIndex = 14;
@@ -195,11 +197,23 @@ namespace ReservacionAulas
             this.label5.TabIndex = 16;
             this.label5.Text = "Direccion:";
             // 
+            // picLimpiar
+            // 
+            this.picLimpiar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("picLimpiar.BackgroundImage")));
+            this.picLimpiar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.picLimpiar.Location = new System.Drawing.Point(64, 462);
+            this.picLimpiar.Name = "picLimpiar";
+            this.picLimpiar.Size = new System.Drawing.Size(56, 54);
+            this.picLimpiar.TabIndex = 18;
+            this.picLimpiar.TabStop = false;
+            this.picLimpiar.Click += new System.EventHandler(this.picLimpiar_Click);
+            // 
             // Campus
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(927, 539);
+            this.Controls.Add(this.picLimpiar);
             this.Controls.Add(this.txtDireccionCampus);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.picBuscarCampus);
@@ -222,6 +236,7 @@ namespace ReservacionAulas
             ((System.ComponentModel.ISupportInitialize)(this.picEliminarCampus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picGuardarCampus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBuscarCampus)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picLimpiar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -243,5 +258,6 @@ namespace ReservacionAulas
         private System.Windows.Forms.PictureBox picBuscarCampus;
         private System.Windows.Forms.TextBox txtDireccionCampus;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.PictureBox picLimpiar;
     }
 }

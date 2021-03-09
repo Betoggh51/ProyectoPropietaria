@@ -2095,7 +2095,6 @@ namespace ReservacionAulas {
                 this.columnIdentificador_Aula.AllowDBNull = false;
                 this.columnFecha_Reservacion.AllowDBNull = false;
                 this.columnCantidad_Horas.AllowDBNull = false;
-                this.columnComentario.AllowDBNull = false;
                 this.columnComentario.MaxLength = 300;
                 this.columnEstado.AllowDBNull = false;
                 this.columnEstado.MaxLength = 10;
@@ -3313,7 +3312,12 @@ namespace ReservacionAulas {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public string Comentario {
                 get {
-                    return ((string)(this[this.tableReservaciones_Aulas.ComentarioColumn]));
+                    try {
+                        return ((string)(this[this.tableReservaciones_Aulas.ComentarioColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Comentario\' in table \'Reservaciones_Aulas\' is DBNull.", e);
+                    }
                 }
                 set {
                     this[this.tableReservaciones_Aulas.ComentarioColumn] = value;
@@ -3362,6 +3366,18 @@ namespace ReservacionAulas {
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["FK_Reservaciones_Aulas_Usuarios"]);
                 }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsComentarioNull() {
+                return this.IsNull(this.tableReservaciones_Aulas.ComentarioColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetComentarioNull() {
+                this[this.tableReservaciones_Aulas.ComentarioColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -5550,7 +5566,7 @@ SELECT Num_Reservacion, Identificador_Empleado, Identificador_Usuario, Identific
             this.Adapter.DeleteCommand.Parameters[4].Value = ((System.DateTime)(Original_Fecha_Reservacion));
             this.Adapter.DeleteCommand.Parameters[5].Value = ((int)(Original_Cantidad_Horas));
             if ((Original_Comentario == null)) {
-                throw new global::System.ArgumentNullException("Original_Comentario");
+                this.Adapter.DeleteCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.DeleteCommand.Parameters[6].Value = ((string)(Original_Comentario));
@@ -5588,7 +5604,7 @@ SELECT Num_Reservacion, Identificador_Empleado, Identificador_Usuario, Identific
             this.Adapter.InsertCommand.Parameters[3].Value = ((System.DateTime)(Fecha_Reservacion));
             this.Adapter.InsertCommand.Parameters[4].Value = ((int)(Cantidad_Horas));
             if ((Comentario == null)) {
-                throw new global::System.ArgumentNullException("Comentario");
+                this.Adapter.InsertCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.InsertCommand.Parameters[5].Value = ((string)(Comentario));
@@ -5642,7 +5658,7 @@ SELECT Num_Reservacion, Identificador_Empleado, Identificador_Usuario, Identific
             this.Adapter.UpdateCommand.Parameters[3].Value = ((System.DateTime)(Fecha_Reservacion));
             this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Cantidad_Horas));
             if ((Comentario == null)) {
-                throw new global::System.ArgumentNullException("Comentario");
+                this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(Comentario));
@@ -5660,7 +5676,7 @@ SELECT Num_Reservacion, Identificador_Empleado, Identificador_Usuario, Identific
             this.Adapter.UpdateCommand.Parameters[11].Value = ((System.DateTime)(Original_Fecha_Reservacion));
             this.Adapter.UpdateCommand.Parameters[12].Value = ((int)(Original_Cantidad_Horas));
             if ((Original_Comentario == null)) {
-                throw new global::System.ArgumentNullException("Original_Comentario");
+                this.Adapter.UpdateCommand.Parameters[13].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[13].Value = ((string)(Original_Comentario));

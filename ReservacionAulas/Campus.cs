@@ -58,6 +58,7 @@ namespace ReservacionAulas
                 MessageBox.Show("Error al realizar la consulta: " + ex.Message);
             }
         }
+
         private void picBuscarCampus_Click(object sender, EventArgs e)
         {
             CargarDataGridView();
@@ -81,17 +82,22 @@ namespace ReservacionAulas
                     SqlCommand comando = new SqlCommand(consulta, con);
                     comando.ExecuteNonQuery();
 
+                    txtNombreCampus.Text = "";
+                    txtDireccionCampus.Text = "";
+                    cmbEstadoCampus.Text = "";
+
                     CargarDataGridView();
+
                     MessageBox.Show("Campus registrado exitosamente");
-                } 
+                }
                 else
                 {
                     DataGridViewRow fila = this.dgvCampus.SelectedRows[0];
-                    string id  = fila.Cells[0].Value.ToString();
+                    string id = fila.Cells[0].Value.ToString();
 
                     string consulta = "UPDATE CAMPUS SET Descripcion = '" + txtNombreCampus.Text + "', Direccion = '" + txtDireccionCampus.Text;
                     consulta += "', Estado  = '" + cmbEstadoCampus.Text + "'";
-                    consulta += " WHERE Identificador = '" + id +"'";
+                    consulta += " WHERE Identificador = '" + id + "'";
 
                     SqlCommand comando = new SqlCommand(consulta, con);
                     comando.ExecuteNonQuery();
@@ -114,26 +120,30 @@ namespace ReservacionAulas
 
         private void picEliminarCampus_Click(object sender, EventArgs e)
         {
-            try
+            DialogResult result = MessageBox.Show("¿Seguro que desea eliminar este registro?", "Eliminar", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
             {
-                DataGridViewRow fila = this.dgvCampus.SelectedRows[0];
-                string id = fila.Cells[0].Value.ToString();
+                try
+                {
+                    DataGridViewRow fila = this.dgvCampus.SelectedRows[0];
+                    string id = fila.Cells[0].Value.ToString();
 
-                string consulta = "DELETE FROM CAMPUS WHERE Identificador = '" + id + "'";
+                    string consulta = "DELETE FROM CAMPUS WHERE Identificador = '" + id + "'";
 
-                SqlCommand comando = new SqlCommand(consulta, con);
-                comando.ExecuteNonQuery();
+                    SqlCommand comando = new SqlCommand(consulta, con);
+                    comando.ExecuteNonQuery();
 
-                CargarDataGridView();
-                MessageBox.Show("Campus eliminado exitosamente");
+                    CargarDataGridView();
+                    MessageBox.Show("Campus eliminado exitosamente");
 
-                txtNombreCampus.Text = "";
-                txtDireccionCampus.Text = "";
-                cmbEstadoCampus.Text = "";
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Debe seleccionar un registro para eliminarlo");
+                    txtNombreCampus.Text = "";
+                    txtDireccionCampus.Text = "";
+                    cmbEstadoCampus.Text = "";
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Debe seleccionar un registro para eliminarlo");
+                }
             }
         }
 
@@ -151,6 +161,17 @@ namespace ReservacionAulas
             {
                 MessageBox.Show("Selecciona la fila desde la flecha de la izquierda");
             }
+        }
+
+        private void picLimpiar_Click(object sender, EventArgs e)
+        {
+            txtNombreCampus.Text = "";
+            txtDireccionCampus.Text = "";
+            cmbEstadoCampus.Text = "";
+
+            modalidad = "c";
+
+            dgvCampus.ClearSelection();
         }
     }
 }
