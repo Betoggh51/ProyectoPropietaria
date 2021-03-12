@@ -76,8 +76,8 @@ namespace ReservacionAulas
             {
                 if (modalidad == "c")
                 {
-                    string consulta = "INSERT INTO CAMPUS (Descripcion, Direccion, Estado) VALUES('";
-                    consulta += txtNombreCampus.Text + "',' " + txtDireccionCampus.Text + "', '" + cmbEstadoCampus.Text + "')";
+                    string consulta = $@"INSERT INTO CAMPUS (Descripcion, Direccion, Estado) 
+                                    VALUES('{txtNombreCampus.Text}', '{txtDireccionCampus.Text}', '{cmbEstadoCampus.Text}')";
 
                     SqlCommand comando = new SqlCommand(consulta, con);
                     comando.ExecuteNonQuery();
@@ -95,9 +95,8 @@ namespace ReservacionAulas
                     DataGridViewRow fila = this.dgvCampus.SelectedRows[0];
                     string id = fila.Cells[0].Value.ToString();
 
-                    string consulta = "UPDATE CAMPUS SET Descripcion = '" + txtNombreCampus.Text + "', Direccion = '" + txtDireccionCampus.Text;
-                    consulta += "', Estado  = '" + cmbEstadoCampus.Text + "'";
-                    consulta += " WHERE Identificador = '" + id + "'";
+                    string consulta = $@"UPDATE CAMPUS SET Descripcion = '{txtNombreCampus.Text}', Direccion = '{txtDireccionCampus.Text}',
+                                       Estado = '{cmbEstadoCampus.Text}' WHERE Identificador = '{id}'";
 
                     SqlCommand comando = new SqlCommand(consulta, con);
                     comando.ExecuteNonQuery();
@@ -128,7 +127,7 @@ namespace ReservacionAulas
                     DataGridViewRow fila = this.dgvCampus.SelectedRows[0];
                     string id = fila.Cells[0].Value.ToString();
 
-                    string consulta = "DELETE FROM CAMPUS WHERE Identificador = '" + id + "'";
+                    string consulta = $"DELETE FROM CAMPUS WHERE Identificador = '{id}'";
 
                     SqlCommand comando = new SqlCommand(consulta, con);
                     comando.ExecuteNonQuery();

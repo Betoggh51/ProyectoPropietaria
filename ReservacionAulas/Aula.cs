@@ -76,10 +76,10 @@ namespace ReservacionAulas
             {
                 if (modalidad == "c")
                 {
-                    string consulta = "INSERT INTO Aulas (Descripcion, Identificador_Tipo_Aula, " +
-                        "Identificador_Edificio, Capacidad, Cupos_reservados, Estado) VALUES('";
-                    consulta += txtDescripcionAula.Text + "', " + cmbTipoAula.SelectedValue + ", " + cmbEdificio.SelectedValue + ",";
-                    consulta += nudCapacidad.Value + "," + nudCuposReservados.Value + ",'" + cmbEstado.Text + "')";
+                    string consulta = $@"INSERT INTO Aulas (Descripcion, Identificador_Tipo_Aula,
+                                Identificador_Edificio, Capacidad, Cupos_reservados, Estado) VALUES(';
+                                {txtDescripcionAula.Text}', '{cmbTipoAula.SelectedValue}', {cmbEdificio.SelectedValue},
+                                {nudCapacidad.Value}, {nudCuposReservados.Value},'{cmbEstado.Text}')";
 
                     SqlCommand comando = new SqlCommand(consulta, con);
                     comando.ExecuteNonQuery();
@@ -92,10 +92,11 @@ namespace ReservacionAulas
                     DataGridViewRow fila = this.dgvAulas.SelectedRows[0];
                     string id = fila.Cells[0].Value.ToString();
 
-                    string consulta = "UPDATE Aulas SET Descripcion = '" + txtDescripcionAula.Text + "', Identificador_Tipo_Aula = " + cmbTipoAula.SelectedValue;
-                    consulta += ", Identificador_Edificio = " + cmbEdificio.SelectedValue + ", Capacidad = " + nudCapacidad.Value + ",";
-                    consulta += "Cupos_Reservados = "+ nudCuposReservados.Value + ", Estado  = '" + cmbEstado.Text + "'";
-                    consulta += " WHERE Identificador = " + id;
+                    string consulta = $@"UPDATE Aulas SET Descripcion = '{txtDescripcionAula.Text}', 
+                                       Identificador_Tipo_Aula = '{cmbTipoAula.SelectedValue}',
+                                       Identificador_Edificio = {cmbEdificio.SelectedValue}, Capacidad = {nudCapacidad.Value}
+                                       Cupos_Reservados = {nudCuposReservados.Value}, Estado  = '{cmbEstado.Text}'
+                                       WHERE Identificador = {id}";
 
                     SqlCommand comando = new SqlCommand(consulta, con);
                     comando.ExecuteNonQuery();
@@ -122,8 +123,7 @@ namespace ReservacionAulas
         {
             try
             {
-                string consulta = "SELECT * FROM Aulas ";
-                consulta += " WHERE " + cmbCriterioBusqueda.Text + " LIKE '%" + txtBusqueda.Text + "%'";
+                string consulta = $"SELECT * FROM Aulas WHERE {cmbCriterioBusqueda}  LIKE '%{txtBusqueda.Text}%'";
 
                 SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(consulta, con);
                 DataTable dataTable = new DataTable();
@@ -149,7 +149,7 @@ namespace ReservacionAulas
                     DataGridViewRow fila = this.dgvAulas.SelectedRows[0];
                     string id = fila.Cells[0].Value.ToString();
 
-                    string consulta = "DELETE FROM Aulas WHERE Identificador = '" + id + "'";
+                    string consulta = $"DELETE FROM Aulas WHERE Identificador = {id}";
 
                     SqlCommand comando = new SqlCommand(consulta, con);
                     comando.ExecuteNonQuery();

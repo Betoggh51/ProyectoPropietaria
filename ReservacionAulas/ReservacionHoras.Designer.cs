@@ -51,13 +51,16 @@ namespace ReservacionAulas
             this.picGuardar = new System.Windows.Forms.PictureBox();
             this.picEliminar = new System.Windows.Forms.PictureBox();
             this.dtpFecha = new System.Windows.Forms.DateTimePicker();
-            this.nudCantidadHoras = new System.Windows.Forms.NumericUpDown();
             this.picLimpiar = new System.Windows.Forms.PictureBox();
+            this.txtCantidadHoras = new System.Windows.Forms.TextBox();
+            this.dtpHoraInicio = new System.Windows.Forms.DateTimePicker();
+            this.dtpHoraFin = new System.Windows.Forms.DateTimePicker();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvReservacion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBuscar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picGuardar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picEliminar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudCantidadHoras)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLimpiar)).BeginInit();
             this.SuspendLayout();
             // 
@@ -66,12 +69,12 @@ namespace ReservacionAulas
             this.dgvReservacion.AllowUserToAddRows = false;
             this.dgvReservacion.AllowUserToDeleteRows = false;
             this.dgvReservacion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvReservacion.Location = new System.Drawing.Point(379, 140);
+            this.dgvReservacion.Location = new System.Drawing.Point(379, 139);
             this.dgvReservacion.Name = "dgvReservacion";
             this.dgvReservacion.ReadOnly = true;
             this.dgvReservacion.RowHeadersWidth = 51;
             this.dgvReservacion.RowTemplate.Height = 24;
-            this.dgvReservacion.Size = new System.Drawing.Size(704, 328);
+            this.dgvReservacion.Size = new System.Drawing.Size(704, 391);
             this.dgvReservacion.TabIndex = 2;
             this.dgvReservacion.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvReservacion_CellDoubleClick);
             // 
@@ -118,7 +121,7 @@ namespace ReservacionAulas
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe MDL2 Assets", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(29, 369);
+            this.label5.Location = new System.Drawing.Point(29, 429);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(71, 24);
             this.label5.TabIndex = 7;
@@ -128,7 +131,7 @@ namespace ReservacionAulas
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe MDL2 Assets", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(29, 338);
+            this.label6.Location = new System.Drawing.Point(29, 398);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(107, 24);
             this.label6.TabIndex = 8;
@@ -138,7 +141,7 @@ namespace ReservacionAulas
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe MDL2 Assets", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(29, 302);
+            this.label7.Location = new System.Drawing.Point(29, 362);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(142, 24);
             this.label7.TabIndex = 9;
@@ -161,7 +164,7 @@ namespace ReservacionAulas
             this.cmbEstado.Items.AddRange(new object[] {
             "Activo",
             "Inactivo"});
-            this.cmbEstado.Location = new System.Drawing.Point(158, 373);
+            this.cmbEstado.Location = new System.Drawing.Point(158, 433);
             this.cmbEstado.Name = "cmbEstado";
             this.cmbEstado.Size = new System.Drawing.Size(179, 24);
             this.cmbEstado.TabIndex = 11;
@@ -186,7 +189,7 @@ namespace ReservacionAulas
             // 
             // txtComentario
             // 
-            this.txtComentario.Location = new System.Drawing.Point(158, 345);
+            this.txtComentario.Location = new System.Drawing.Point(158, 405);
             this.txtComentario.Name = "txtComentario";
             this.txtComentario.Size = new System.Drawing.Size(179, 22);
             this.txtComentario.TabIndex = 14;
@@ -251,7 +254,7 @@ namespace ReservacionAulas
             // 
             this.picGuardar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("picGuardar.BackgroundImage")));
             this.picGuardar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picGuardar.Location = new System.Drawing.Point(166, 414);
+            this.picGuardar.Location = new System.Drawing.Point(165, 476);
             this.picGuardar.Name = "picGuardar";
             this.picGuardar.Size = new System.Drawing.Size(56, 54);
             this.picGuardar.TabIndex = 44;
@@ -262,7 +265,7 @@ namespace ReservacionAulas
             // 
             this.picEliminar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("picEliminar.BackgroundImage")));
             this.picEliminar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picEliminar.Location = new System.Drawing.Point(238, 414);
+            this.picEliminar.Location = new System.Drawing.Point(237, 476);
             this.picEliminar.Name = "picEliminar";
             this.picEliminar.Size = new System.Drawing.Size(56, 54);
             this.picEliminar.TabIndex = 43;
@@ -271,51 +274,81 @@ namespace ReservacionAulas
             // 
             // dtpFecha
             // 
+            this.dtpFecha.CustomFormat = "dd-MM-yyyy";
+            this.dtpFecha.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpFecha.Location = new System.Drawing.Point(208, 273);
             this.dtpFecha.Name = "dtpFecha";
             this.dtpFecha.Size = new System.Drawing.Size(129, 22);
             this.dtpFecha.TabIndex = 45;
             // 
-            // nudCantidadHoras
-            // 
-            this.nudCantidadHoras.Location = new System.Drawing.Point(191, 310);
-            this.nudCantidadHoras.Maximum = new decimal(new int[] {
-            8,
-            0,
-            0,
-            0});
-            this.nudCantidadHoras.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nudCantidadHoras.Name = "nudCantidadHoras";
-            this.nudCantidadHoras.Size = new System.Drawing.Size(146, 22);
-            this.nudCantidadHoras.TabIndex = 46;
-            this.nudCantidadHoras.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
             // picLimpiar
             // 
             this.picLimpiar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("picLimpiar.BackgroundImage")));
             this.picLimpiar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picLimpiar.Location = new System.Drawing.Point(94, 414);
+            this.picLimpiar.Location = new System.Drawing.Point(93, 476);
             this.picLimpiar.Name = "picLimpiar";
             this.picLimpiar.Size = new System.Drawing.Size(56, 54);
             this.picLimpiar.TabIndex = 48;
             this.picLimpiar.TabStop = false;
             this.picLimpiar.Click += new System.EventHandler(this.picLimpiar_Click);
             // 
+            // txtCantidadHoras
+            // 
+            this.txtCantidadHoras.Location = new System.Drawing.Point(177, 369);
+            this.txtCantidadHoras.Name = "txtCantidadHoras";
+            this.txtCantidadHoras.ReadOnly = true;
+            this.txtCantidadHoras.Size = new System.Drawing.Size(160, 22);
+            this.txtCantidadHoras.TabIndex = 49;
+            // 
+            // dtpHoraInicio
+            // 
+            this.dtpHoraInicio.CustomFormat = "HH:mm";
+            this.dtpHoraInicio.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpHoraInicio.Location = new System.Drawing.Point(141, 309);
+            this.dtpHoraInicio.Name = "dtpHoraInicio";
+            this.dtpHoraInicio.Size = new System.Drawing.Size(200, 22);
+            this.dtpHoraInicio.TabIndex = 50;
+            // 
+            // dtpHoraFin
+            // 
+            this.dtpHoraFin.CustomFormat = "HH:mm";
+            this.dtpHoraFin.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpHoraFin.Location = new System.Drawing.Point(141, 337);
+            this.dtpHoraFin.Name = "dtpHoraFin";
+            this.dtpHoraFin.Size = new System.Drawing.Size(200, 22);
+            this.dtpHoraFin.TabIndex = 51;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe MDL2 Assets", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(29, 331);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(86, 24);
+            this.label1.TabIndex = 54;
+            this.label1.Text = "Hora Fin:";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Segoe MDL2 Assets", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(29, 304);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(102, 24);
+            this.label12.TabIndex = 55;
+            this.label12.Text = "Hora Inicio:";
+            // 
             // ReservacionHoras
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1116, 503);
+            this.ClientSize = new System.Drawing.Size(1116, 565);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.dtpHoraFin);
+            this.Controls.Add(this.dtpHoraInicio);
+            this.Controls.Add(this.txtCantidadHoras);
             this.Controls.Add(this.picLimpiar);
-            this.Controls.Add(this.nudCantidadHoras);
             this.Controls.Add(this.dtpFecha);
             this.Controls.Add(this.picGuardar);
             this.Controls.Add(this.picEliminar);
@@ -345,7 +378,6 @@ namespace ReservacionAulas
             ((System.ComponentModel.ISupportInitialize)(this.picBuscar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picGuardar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picEliminar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudCantidadHoras)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLimpiar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -374,7 +406,11 @@ namespace ReservacionAulas
         private System.Windows.Forms.PictureBox picGuardar;
         private System.Windows.Forms.PictureBox picEliminar;
         private System.Windows.Forms.DateTimePicker dtpFecha;
-        private System.Windows.Forms.NumericUpDown nudCantidadHoras;
         private System.Windows.Forms.PictureBox picLimpiar;
+        private System.Windows.Forms.TextBox txtCantidadHoras;
+        private System.Windows.Forms.DateTimePicker dtpHoraInicio;
+        private System.Windows.Forms.DateTimePicker dtpHoraFin;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label12;
     }
 }

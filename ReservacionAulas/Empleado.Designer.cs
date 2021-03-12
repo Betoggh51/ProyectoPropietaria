@@ -248,7 +248,8 @@ namespace ReservacionAulas
             // 
             // dtpFechaIngreso
             // 
-            this.dtpFechaIngreso.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFechaIngreso.CustomFormat = "yyyy-MM-dd";
+            this.dtpFechaIngreso.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpFechaIngreso.Location = new System.Drawing.Point(206, 349);
             this.dtpFechaIngreso.MinDate = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
             this.dtpFechaIngreso.Name = "dtpFechaIngreso";

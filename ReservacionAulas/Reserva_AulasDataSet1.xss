@@ -10,7 +10,7 @@
     <Shape ID="DesignTable:Campus" ZOrder="12" X="641" Y="70" Height="181" Width="223" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="122" />
     <Shape ID="DesignTable:Edificios" ZOrder="11" X="345" Y="70" Height="181" Width="226" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="122" />
     <Shape ID="DesignTable:Empleados" ZOrder="10" X="715" Y="549" Height="227" Width="244" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="168" />
-    <Shape ID="DesignTable:Reservaciones_Aulas" ZOrder="9" X="345" Y="549" Height="273" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="214" />
+    <Shape ID="DesignTable:Reservaciones_Aulas" ZOrder="9" X="345" Y="549" Height="319" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="260" />
     <Shape ID="DesignTable:Tipos_Aulas" ZOrder="8" X="345" Y="321" Height="158" Width="250" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="99" />
     <Shape ID="DesignTable:Usuarios" ZOrder="7" X="715" Y="846" Height="227" Width="227" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="168" />
   </Shapes>
@@ -87,15 +87,15 @@
       <RoutePoints>
         <Point>
           <X>715</X>
-          <Y>863</Y>
+          <Y>876</Y>
         </Point>
         <Point>
           <X>628</X>
-          <Y>863</Y>
+          <Y>876</Y>
         </Point>
         <Point>
           <X>628</X>
-          <Y>822</Y>
+          <Y>868</Y>
         </Point>
       </RoutePoints>
     </Connector>

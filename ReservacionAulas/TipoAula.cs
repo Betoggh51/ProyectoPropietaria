@@ -42,8 +42,8 @@ namespace ReservacionAulas
         {
             try
             {
-                string consulta = "SELECT * FROM TIPOS_AULAS ";
-                consulta += " WHERE " + cmbCriterioBusqueda.Text + " LIKE '%" + txtBusqueda.Text + "%'";
+                string consulta = $@"SELECT * FROM TIPOS_AULAS
+                                WHERE '{cmbCriterioBusqueda.Text}' LIKE '%{txtBusqueda.Text}%'";
 
                 SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(consulta, con);
                 DataTable dataTable = new DataTable();
@@ -91,8 +91,8 @@ namespace ReservacionAulas
             {
                 if (modalidad == "c")
                 {
-                    string consulta = "INSERT INTO Tipos_Aulas (Descripcion, Estado) VALUES('";
-                    consulta += txtDescripcionTipoAula.Text + "',' " + cmbEstadoTipoAula.Text + "')";
+                    string consulta = $@"INSERT INTO Tipos_Aulas (Descripcion, Estado) 
+                                    VALUES('{txtDescripcionTipoAula.Text}', '{cmbEstadoTipoAula.Text}'";
 
                     SqlCommand comando = new SqlCommand(consulta, con);
                     comando.ExecuteNonQuery();
@@ -105,9 +105,9 @@ namespace ReservacionAulas
                     DataGridViewRow fila = this.dgvTipoAula.SelectedRows[0];
                     string id = fila.Cells[0].Value.ToString();
 
-                    string consulta = "UPDATE Tipos_Aulas SET Descripcion = '" + txtDescripcionTipoAula.Text + "'";
-                    consulta += ", Estado  = '" + cmbEstadoTipoAula.Text + "'";
-                    consulta += " WHERE Identificador = '" + id + "'";
+                    string consulta = $@"UPDATE Tipos_Aulas SET Descripcion = '{txtDescripcionTipoAula.Text}',
+                                      Estado  = '{cmbEstadoTipoAula.Text}',
+                                      WHERE Identificador = {id}";
 
                     SqlCommand comando = new SqlCommand(consulta, con);
                     comando.ExecuteNonQuery();
@@ -137,7 +137,7 @@ namespace ReservacionAulas
                     DataGridViewRow fila = this.dgvTipoAula.SelectedRows[0];
                     string id = fila.Cells[0].Value.ToString();
 
-                    string consulta = "DELETE FROM Tipos_Aulas WHERE Identificador = '" + id + "'";
+                    string consulta = $@"DELETE FROM Tipos_Aulas WHERE Identificador = {id}";
 
                     SqlCommand comando = new SqlCommand(consulta, con);
                     comando.ExecuteNonQuery();
