@@ -2934,9 +2934,9 @@ namespace ReservacionAulas {
             
             private global::System.Data.DataColumn columnNombre_Usuario;
             
-            private global::System.Data.DataColumn columnCorreo;
-            
             private global::System.Data.DataColumn columnClave;
+            
+            private global::System.Data.DataColumn columnIdentificador_Registro;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
@@ -2981,17 +2981,17 @@ namespace ReservacionAulas {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn CorreoColumn {
+            public global::System.Data.DataColumn ClaveColumn {
                 get {
-                    return this.columnCorreo;
+                    return this.columnClave;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn ClaveColumn {
+            public global::System.Data.DataColumn Identificador_RegistroColumn {
                 get {
-                    return this.columnClave;
+                    return this.columnIdentificador_Registro;
                 }
             }
             
@@ -3032,15 +3032,22 @@ namespace ReservacionAulas {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public RegistroRow AddRegistroRow(string Nombre_Usuario, string Correo, string Clave) {
+            public RegistroRow AddRegistroRow(string Nombre_Usuario, string Clave) {
                 RegistroRow rowRegistroRow = ((RegistroRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Nombre_Usuario,
-                        Correo,
-                        Clave};
+                        Clave,
+                        null};
                 rowRegistroRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowRegistroRow);
                 return rowRegistroRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public RegistroRow FindByIdentificador_Registro(int Identificador_Registro) {
+                return ((RegistroRow)(this.Rows.Find(new object[] {
+                            Identificador_Registro})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3061,8 +3068,8 @@ namespace ReservacionAulas {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             internal void InitVars() {
                 this.columnNombre_Usuario = base.Columns["Nombre_Usuario"];
-                this.columnCorreo = base.Columns["Correo"];
                 this.columnClave = base.Columns["Clave"];
+                this.columnIdentificador_Registro = base.Columns["Identificador_Registro"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3070,16 +3077,22 @@ namespace ReservacionAulas {
             private void InitClass() {
                 this.columnNombre_Usuario = new global::System.Data.DataColumn("Nombre_Usuario", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNombre_Usuario);
-                this.columnCorreo = new global::System.Data.DataColumn("Correo", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCorreo);
                 this.columnClave = new global::System.Data.DataColumn("Clave", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnClave);
+                this.columnIdentificador_Registro = new global::System.Data.DataColumn("Identificador_Registro", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIdentificador_Registro);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnIdentificador_Registro}, true));
                 this.columnNombre_Usuario.AllowDBNull = false;
                 this.columnNombre_Usuario.MaxLength = 50;
-                this.columnCorreo.AllowDBNull = false;
-                this.columnCorreo.MaxLength = 50;
                 this.columnClave.AllowDBNull = false;
                 this.columnClave.MaxLength = 50;
+                this.columnIdentificador_Registro.AutoIncrement = true;
+                this.columnIdentificador_Registro.AutoIncrementSeed = -1;
+                this.columnIdentificador_Registro.AutoIncrementStep = -1;
+                this.columnIdentificador_Registro.AllowDBNull = false;
+                this.columnIdentificador_Registro.ReadOnly = true;
+                this.columnIdentificador_Registro.Unique = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3927,23 +3940,23 @@ namespace ReservacionAulas {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public string Correo {
-                get {
-                    return ((string)(this[this.tableRegistro.CorreoColumn]));
-                }
-                set {
-                    this[this.tableRegistro.CorreoColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public string Clave {
                 get {
                     return ((string)(this[this.tableRegistro.ClaveColumn]));
                 }
                 set {
                     this[this.tableRegistro.ClaveColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public int Identificador_Registro {
+                get {
+                    return ((int)(this[this.tableRegistro.Identificador_RegistroColumn]));
+                }
+                set {
+                    this[this.tableRegistro.Identificador_RegistroColumn] = value;
                 }
             }
         }
@@ -7113,17 +7126,37 @@ SELECT Identificador, Nombre, Cedula, No_Carnet, Tipo_Usuario, Estado FROM Usuar
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "Registro";
             tableMapping.ColumnMappings.Add("Nombre_Usuario", "Nombre_Usuario");
-            tableMapping.ColumnMappings.Add("Correo", "Correo");
             tableMapping.ColumnMappings.Add("Clave", "Clave");
+            tableMapping.ColumnMappings.Add("Identificador_Registro", "Identificador_Registro");
             this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.DeleteCommand.Connection = this.Connection;
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [Registro] WHERE (([Nombre_Usuario] = @Original_Nombre_Usuario) AND (" +
+                "[Clave] = @Original_Clave) AND ([Identificador_Registro] = @Original_Identificad" +
+                "or_Registro))";
+            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Nombre_Usuario", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Nombre_Usuario", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Clave", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Clave", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Identificador_Registro", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Identificador_Registro", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Registro] ([Nombre_Usuario], [Correo], [Clave]) VALUES (@Nombr" +
-                "e_Usuario, @Correo, @Clave)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [Registro] ([Nombre_Usuario], [Clave]) VALUES (@Nombre_Usuario, @Clav" +
+                "e);\r\nSELECT Nombre_Usuario, Clave, Identificador_Registro FROM Registro WHERE (I" +
+                "dentificador_Registro = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Nombre_Usuario", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Nombre_Usuario", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Correo", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Correo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Clave", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Clave", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.UpdateCommand.Connection = this.Connection;
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [Registro] SET [Nombre_Usuario] = @Nombre_Usuario, [Clave] = @Clave WHERE (([Nombre_Usuario] = @Original_Nombre_Usuario) AND ([Clave] = @Original_Clave) AND ([Identificador_Registro] = @Original_Identificador_Registro));
+SELECT Nombre_Usuario, Clave, Identificador_Registro FROM Registro WHERE (Identificador_Registro = @Identificador_Registro)";
+            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Nombre_Usuario", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Nombre_Usuario", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Clave", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Clave", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Nombre_Usuario", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Nombre_Usuario", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Clave", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Clave", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Identificador_Registro", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Identificador_Registro", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Identificador_Registro", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "Identificador_Registro", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7139,7 +7172,7 @@ SELECT Identificador, Nombre, Cedula, No_Carnet, Tipo_Usuario, Estado FROM Usuar
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT Nombre_Usuario, Correo, Clave FROM dbo.Registro";
+            this._commandCollection[0].CommandText = "SELECT Nombre_Usuario, Clave, Identificador_Registro FROM Registro";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -7199,25 +7232,53 @@ SELECT Identificador, Nombre, Cedula, No_Carnet, Tipo_Usuario, Estado FROM Usuar
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
+        public virtual int Delete(string Original_Nombre_Usuario, string Original_Clave, int Original_Identificador_Registro) {
+            if ((Original_Nombre_Usuario == null)) {
+                throw new global::System.ArgumentNullException("Original_Nombre_Usuario");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[0].Value = ((string)(Original_Nombre_Usuario));
+            }
+            if ((Original_Clave == null)) {
+                throw new global::System.ArgumentNullException("Original_Clave");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_Clave));
+            }
+            this.Adapter.DeleteCommand.Parameters[2].Value = ((int)(Original_Identificador_Registro));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
+            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.DeleteCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.DeleteCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string Nombre_Usuario, string Correo, string Clave) {
+        public virtual int Insert(string Nombre_Usuario, string Clave) {
             if ((Nombre_Usuario == null)) {
                 throw new global::System.ArgumentNullException("Nombre_Usuario");
             }
             else {
                 this.Adapter.InsertCommand.Parameters[0].Value = ((string)(Nombre_Usuario));
             }
-            if ((Correo == null)) {
-                throw new global::System.ArgumentNullException("Correo");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(Correo));
-            }
             if ((Clave == null)) {
                 throw new global::System.ArgumentNullException("Clave");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(Clave));
+                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(Clave));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -7233,6 +7294,61 @@ SELECT Identificador, Nombre, Cedula, No_Carnet, Tipo_Usuario, Estado FROM Usuar
                     this.Adapter.InsertCommand.Connection.Close();
                 }
             }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(string Nombre_Usuario, string Clave, string Original_Nombre_Usuario, string Original_Clave, int Original_Identificador_Registro, int Identificador_Registro) {
+            if ((Nombre_Usuario == null)) {
+                throw new global::System.ArgumentNullException("Nombre_Usuario");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(Nombre_Usuario));
+            }
+            if ((Clave == null)) {
+                throw new global::System.ArgumentNullException("Clave");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(Clave));
+            }
+            if ((Original_Nombre_Usuario == null)) {
+                throw new global::System.ArgumentNullException("Original_Nombre_Usuario");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(Original_Nombre_Usuario));
+            }
+            if ((Original_Clave == null)) {
+                throw new global::System.ArgumentNullException("Original_Clave");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(Original_Clave));
+            }
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_Identificador_Registro));
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Identificador_Registro));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
+            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.UpdateCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.UpdateCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(string Nombre_Usuario, string Clave, string Original_Nombre_Usuario, string Original_Clave, int Original_Identificador_Registro) {
+            return this.Update(Nombre_Usuario, Clave, Original_Nombre_Usuario, Original_Clave, Original_Identificador_Registro, Original_Identificador_Registro);
         }
     }
     

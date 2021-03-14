@@ -40,13 +40,13 @@ namespace ReservacionAulas
 
         private void picLimpiar_Click(object sender, EventArgs e)
         {
-            cmbEmpleado.SelectedIndex = 0;
-            cmbUsuario.SelectedIndex = 0;
-            cmbAula.SelectedIndex = 0;
+            cmbEmpleado.SelectedIndex = -1;
+            cmbUsuario.SelectedIndex = -1;
+            cmbAula.SelectedIndex = -1;
+            cmbEstado.SelectedIndex = -1;
             dtpFecha.Value = DateTime.Now;
             txtCantidadHoras.Text = "0";
             txtComentario.Text = "";
-            cmbEstado.SelectedIndex = 0;
 
             dgvReservacion.ClearSelection();
         }
@@ -59,16 +59,21 @@ namespace ReservacionAulas
                 return;
             }
 
+            if (dtpHoraFin.Value <= dtpHoraInicio.Value)
+            {
+                MessageBox.Show("La hora de fin no puede ser menor a la hora de inicio");
+                return;
+            }
+
             try
             {
                 if (modalidad == "c")
                 {
                     string cantidadHoras = (dtpHoraFin.Value - dtpHoraInicio.Value).ToString();
-                    MessageBox.Show(cantidadHoras);
                     string consulta = $@"INSERT INTO Reservaciones_Aulas (Identificador_Empleado, Identificador_Usuario,
                                       Identificador_Aula, Fecha_Reservacion,Hora_Inicio, Hora_Fin, Cantidad_Horas, Comentario, Estado)
-                                      VALUES ({cmbEmpleado.SelectedValue}, {cmbUsuario.SelectedValue}, {cmbAula.SelectedValue}, '{dtpFecha.Text}',
-                                      '{dtpHoraInicio}', '{dtpHoraFin}','{cantidadHoras}', '{txtComentario.Text}', '{cmbEstado.Text}')";
+                                      VALUES ({cmbEmpleado.SelectedValue}, {cmbUsuario.SelectedValue}, {cmbAula.SelectedValue}, '{dtpFecha.Value}',
+                                      '{dtpHoraInicio.Value}', '{dtpHoraFin.Value}','{cantidadHoras}', '{txtComentario.Text}', '{cmbEstado.Text}')";
 
                     SqlCommand comando = new SqlCommand(consulta, con);
                     comando.ExecuteNonQuery();
@@ -81,12 +86,10 @@ namespace ReservacionAulas
                     DataGridViewRow fila = this.dgvReservacion.SelectedRows[0];
                     string id = fila.Cells[0].Value.ToString();
                     string cantidadHoras = (dtpHoraFin.Value - dtpHoraInicio.Value).ToString();
-                    MessageBox.Show(cantidadHoras);
-                    string fechaReserva = dtpFecha.Value.ToString("yyyy-MM-dd");
                     string consulta = $@"UPDATE Reservaciones_Aulas SET Identificador_Empleado = {cmbEmpleado.SelectedValue},
                                       Identificador_Usuario = {cmbUsuario.SelectedValue}, Identificador_Aula = {cmbAula.SelectedValue},
-                                      Fecha_Reservacion = '{fechaReserva}', Hora_Inicio = '{dtpHoraInicio.Text}',
-                                      Hora_Fin = '{dtpHoraFin.Text}',Cantidad_Horas = {cantidadHoras},
+                                      Fecha_Reservacion = '{dtpFecha.Value}', Hora_Inicio = '{dtpHoraInicio.Value}',
+                                      Hora_Fin = '{dtpHoraFin.Value}',Cantidad_Horas = '{cantidadHoras}',
                                       Comentario = '{txtComentario.Text}', Estado = '{cmbEstado.Text}'
                                         WHERE Num_Reservacion = {id}";
 
@@ -117,11 +120,47 @@ namespace ReservacionAulas
             try
             {
                 string consulta = $@"SELECT RA.Num_Reservacion AS 'Numero Reservacion', E.Nombre AS 'Nombre Empleado',
-                        U.Nombre AS 'Nombre Usuario', A.Descripcion AS 'Descripcion', RA.Fecha_Reservacion AS 'Fecha Reservacion',
-                        RA.Hora_Inicio AS 'Hora Inicio', RA.Hora_Fin AS 'Hora Fin',RA.Cantidad_Horas AS 'Cantidad Horas', RA.Comentario, RA.Estado FROM Reservaciones_Aulas AS RA INNER JOIN
+                        U.Nombre AS 'Nombre Usuario', A.Descripcion AS 'Aula', RA.Fecha_Reservacion AS 'Fecha Reservacion',
+                        RA.Hora_Inicio AS 'Hora Inicio', RA.Hora_Fin AS 'Hora Fin',RA.Cantidad_Horas AS 'Cantidad Horas', 
+                        RA.Comentario, RA.Estado FROM Reservaciones_Aulas AS RA INNER JOIN
                         Empleados AS E ON E.Identificador = RA.Identificador_Empleado INNER JOIN Usuarios AS U
-                        ON U.Identificador = RA.Identificador_Usuario INNER JOIN Aulas AS A ON A.Identificador = RA.Identificador_Aula
-                        WHERE {cmbCriterioBusqueda.Text} LIKE '%{txtBusqueda.Text}%'";
+                        ON U.Identificador = RA.Identificador_Usuario INNER JOIN Aulas AS A ON A.Identificador = RA.Identificador_Aula ";
+
+                switch (cmbCriterioBusqueda.Text)
+                {
+                    case "Numero Reservacion":
+                        consulta += $"WHERE RA.Num_Reservacion LIKE '%{txtBusqueda.Text}%'";
+                        break;
+                    case "Nombre Empleado":
+                        consulta += $"WHERE E.Nombre LIKE '%{txtBusqueda.Text}%'";
+                        break;
+                    case "Nombre Usuario":
+                        consulta += $"WHERE U.Nombre LIKE '%{txtBusqueda.Text}%'";
+                        break;
+                    case "Aula":
+                        consulta += $"WHERE A.Descripcion LIKE '%{txtBusqueda.Text}%'";
+                        break;
+                    case "Fecha Reservacion":
+                        consulta += $"WHERE RA.Fecha_Reservacion LIKE '%{txtBusqueda.Text}%'";
+                        break;
+                    case "Hora Inicio":
+                        consulta += $"WHERE RA.Hora_Inicio LIKE '%{txtBusqueda.Text}%'";
+                        break;
+                    case "Hora Fin":
+                        consulta += $"WHERE RA.Hora_Fin LIKE '%{txtBusqueda.Text}%'";
+                        break;
+                    case "Cantidad Horas":
+                        consulta += $"WHERE RA.Cantidad_Horas LIKE '%{txtBusqueda.Text}%'";
+                        break;
+                    case "Comentario":
+                        consulta += $"WHERE RA.Comentario LIKE '%{txtBusqueda.Text}%'";
+                        break;
+                    case "Estado":
+                        consulta += $"WHERE RA.Estado = '{txtBusqueda.Text}'";
+                        break;
+                    default:
+                        break;
+                }
 
                 SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(consulta, con);
                 DataTable dataTable = new DataTable();
@@ -147,7 +186,7 @@ namespace ReservacionAulas
                     DataGridViewRow fila = this.dgvReservacion.SelectedRows[0];
                     string id = fila.Cells[0].Value.ToString();
 
-                    string consulta = "DELETE FROM Reservacion_Aulas WHERE Identificador = '" + id + "'";
+                    string consulta = $"DELETE FROM Reservaciones_Aulas WHERE Num_Reservacion = {id}";
 
                     SqlCommand comando = new SqlCommand(consulta, con);
                     comando.ExecuteNonQuery();
@@ -155,13 +194,13 @@ namespace ReservacionAulas
                     MessageBox.Show("Reservacion eliminada exitosamente");
                     CargarDataGridView();
 
-                    cmbEmpleado.SelectedIndex = 0;
-                    cmbUsuario.SelectedIndex = 0;
-                    cmbAula.SelectedIndex = 0;
+                    cmbEmpleado.SelectedIndex = -1;
+                    cmbUsuario.SelectedIndex = -1;
+                    cmbAula.SelectedIndex = -1;
                     dtpFecha.Value = DateTime.Now;
                     txtCantidadHoras.Text = "0";
                     txtComentario.Text = "";
-                    cmbEstado.SelectedIndex = 0;
+                    cmbEstado.SelectedIndex = -1;
                 }
                 catch (Exception)
                 {
@@ -187,7 +226,7 @@ namespace ReservacionAulas
             cmbAula.DisplayMember = "descripcion";
             cmbAula.ValueMember = "identificador";
 
-            cmbAula.SelectedIndex = 0;
+            cmbAula.SelectedIndex = -1;
         }
         private void LlenarListaEmpleados()
         {
@@ -201,7 +240,7 @@ namespace ReservacionAulas
             cmbEmpleado.DisplayMember = "Nombre";
             cmbEmpleado.ValueMember = "identificador";
 
-            cmbEmpleado.SelectedIndex = 0;
+            cmbEmpleado.SelectedIndex = -1;
         }
         private void LlenarListaUsuarios()
         {
@@ -215,9 +254,8 @@ namespace ReservacionAulas
             cmbUsuario.DisplayMember = "Nombre";
             cmbUsuario.ValueMember = "identificador";
 
-            cmbUsuario.SelectedIndex = 0;
+            cmbUsuario.SelectedIndex = -1;
         }
-
         private void dgvReservacion_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             try

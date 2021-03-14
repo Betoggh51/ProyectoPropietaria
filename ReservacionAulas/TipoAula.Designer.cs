@@ -161,6 +161,7 @@ namespace ReservacionAulas
             this.cmbCriterioBusqueda.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbCriterioBusqueda.FormattingEnabled = true;
             this.cmbCriterioBusqueda.Items.AddRange(new object[] {
+            "Identificador",
             "Descripcion",
             "Estado"});
             this.cmbCriterioBusqueda.Location = new System.Drawing.Point(319, 93);

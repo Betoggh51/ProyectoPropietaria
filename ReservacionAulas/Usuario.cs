@@ -39,8 +39,13 @@ namespace ReservacionAulas
         {
             try
             {
-                string consulta = "SELECT * FROM Usuarios ";
-                consulta += " WHERE " + cmbCriterioBusqueda.Text + " LIKE '%" + txtBusqueda.Text + "%'";
+                string consulta;
+                if(cmbCriterioBusqueda.Text == "Estado")
+                    consulta = $@"SELECT * FROM Usuarios 
+                                  WHERE Estado = '{txtBusqueda.Text}'";
+                else
+                    consulta = $@"SELECT * FROM Usuarios 
+                                  WHERE {cmbCriterioBusqueda.Text} LIKE '%{txtBusqueda.Text}%'";
 
                 SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(consulta, con);
                 DataTable dataTable = new DataTable();
@@ -61,8 +66,8 @@ namespace ReservacionAulas
             txtNombre.Text = "";
             txtCedula.Text = "";
             txtCarnet.Text = "";
-            cmbTipoUsuario.SelectedIndex = 0;
-            cmbEstado.SelectedIndex = 0;
+            cmbTipoUsuario.SelectedIndex = -1;
+            cmbEstado.SelectedIndex = -1;
 
             dgvUsuarios.ClearSelection();
         }
@@ -105,7 +110,7 @@ namespace ReservacionAulas
                 if (modalidad == "c")
                 {
                     string consulta = $@"INSERT INTO USUARIOS (NOMBRE, CEDULA, NO_CARNET, TIPO_USUARIO, ESTADO)
-                                      VALUES ('{txtNombre.Text}', {txtCedula.Text}, {txtCarnet.Text}, 
+                                      VALUES ('{txtNombre.Text}', '{txtCedula.Text}', '{txtCarnet.Text}', 
                                       '{cmbTipoUsuario.Text}', '{cmbEstado.Text}')";
 
                     SqlCommand comando = new SqlCommand(consulta, con);
@@ -154,7 +159,7 @@ namespace ReservacionAulas
                     DataGridViewRow fila = this.dgvUsuarios.SelectedRows[0];
                     string id = fila.Cells[0].Value.ToString();
 
-                    string consulta = $"DELETE FROM Usuario WHERE Identificador = '{id}'";
+                    string consulta = $"DELETE FROM Usuarios WHERE Identificador = '{id}'";
 
                     SqlCommand comando = new SqlCommand(consulta, con);
                     comando.ExecuteNonQuery();
@@ -165,8 +170,8 @@ namespace ReservacionAulas
                     txtNombre.Text = "";
                     txtCedula.Text = "";
                     txtCarnet.Text = "";
-                    cmbTipoUsuario.SelectedIndex = 0;
-                    cmbEstado.SelectedIndex = 0;
+                    cmbTipoUsuario.SelectedIndex = -1;
+                    cmbEstado.SelectedIndex = -1;
                 }
                 catch (Exception)
                 {

@@ -42,8 +42,13 @@ namespace ReservacionAulas
         {
             try
             {
-                string consulta = $@"SELECT * FROM TIPOS_AULAS
-                                WHERE '{cmbCriterioBusqueda.Text}' LIKE '%{txtBusqueda.Text}%'";
+                string consulta;
+                if (cmbCriterioBusqueda.Text == "Estado")
+                    consulta = $@"SELECT * FROM TIPOS_AULAS
+                                WHERE {cmbCriterioBusqueda.Text} = '{txtBusqueda.Text}'";
+                else
+                    consulta = $@"SELECT * FROM TIPOS_AULAS
+                                WHERE {cmbCriterioBusqueda.Text} LIKE '%{txtBusqueda.Text}%'";
 
                 SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(consulta, con);
                 DataTable dataTable = new DataTable();
@@ -92,7 +97,7 @@ namespace ReservacionAulas
                 if (modalidad == "c")
                 {
                     string consulta = $@"INSERT INTO Tipos_Aulas (Descripcion, Estado) 
-                                    VALUES('{txtDescripcionTipoAula.Text}', '{cmbEstadoTipoAula.Text}'";
+                                    VALUES('{txtDescripcionTipoAula.Text}', '{cmbEstadoTipoAula.Text}')";
 
                     SqlCommand comando = new SqlCommand(consulta, con);
                     comando.ExecuteNonQuery();
@@ -106,14 +111,14 @@ namespace ReservacionAulas
                     string id = fila.Cells[0].Value.ToString();
 
                     string consulta = $@"UPDATE Tipos_Aulas SET Descripcion = '{txtDescripcionTipoAula.Text}',
-                                      Estado  = '{cmbEstadoTipoAula.Text}',
-                                      WHERE Identificador = {id}";
+                                      Estado  = '{cmbEstadoTipoAula.Text}'
+                                      WHERE Identificador = '{id}'";
 
                     SqlCommand comando = new SqlCommand(consulta, con);
                     comando.ExecuteNonQuery();
 
                     CargarDataGridView();
-                    MessageBox.Show("Edificio modificado exitosamente");
+                    MessageBox.Show("Tipo de Aula modificado exitosamente");
                     modalidad = "c";
 
                     txtDescripcionTipoAula.Text = "";
@@ -142,11 +147,11 @@ namespace ReservacionAulas
                     SqlCommand comando = new SqlCommand(consulta, con);
                     comando.ExecuteNonQuery();
 
-                    MessageBox.Show("Edificio eliminado exitosamente");
+                    MessageBox.Show("Tipo de Aula eliminado exitosamente");
                     CargarDataGridView();
 
                     txtDescripcionTipoAula.Text = "";
-                    cmbEstadoTipoAula.Text = "";
+                    cmbEstadoTipoAula.SelectedIndex = -1;
                 }
                 catch (Exception)
                 {
@@ -158,7 +163,7 @@ namespace ReservacionAulas
         private void picLimpiar_Click(object sender, EventArgs e)
         {
             txtDescripcionTipoAula.Text = "";
-            cmbEstadoTipoAula.Text = "";
+            cmbEstadoTipoAula.SelectedIndex = -1;
             modalidad = "c";
 
             dgvTipoAula.ClearSelection();

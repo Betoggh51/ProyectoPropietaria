@@ -75,8 +75,13 @@ namespace ReservacionAulas
         {
             try
             {
-                string consulta = "SELECT * FROM Empleados ";
-                consulta += $" WHERE '{cmbCriterioBusqueda.Text}' LIKE '%'{ txtBusquedaEmpleado.Text}'%'";
+                string consulta;
+                if(cmbCriterioBusqueda.Text == "Estado")
+                    consulta = $@"SELECT * FROM Empleados 
+                                    WHERE Estado = '{txtBusquedaEmpleado.Text}'";
+                else
+                    consulta = $@"SELECT * FROM Empleados
+                                WHERE {cmbCriterioBusqueda.Text} LIKE '%{txtBusquedaEmpleado.Text}%'";
 
                 SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(consulta, con);
                 DataTable dataTable = new DataTable();
@@ -113,10 +118,18 @@ namespace ReservacionAulas
                 {
                     string fechaIngreso = dtpFechaIngreso.Value.ToString("yyyy-MM-dd");
                     string consulta = $@"INSERT INTO Empleados (Nombre, Cedula, Tanda_Laboral, Fecha_Ingreso, Estado)
-                                     VALUES ('{txtNombre.Text}', {txtCedula.Text}, '{cmbTandaLaboral.Text}', '{fechaIngreso}', 
+                                     VALUES ('{txtNombre.Text}', '{txtCedula.Text}', '{cmbTandaLaboral.Text}', '{fechaIngreso}', 
                                      '{cmbEstado.Text}')";
+
+                    string nombre = txtNombre.Text.Trim();
+                    string consultaRegistro = $@"INSERT INTO Registro (Nombre_Usuario, Clave)
+                                                   VALUES('{nombre}', HASHBYTES('SHA2_256','{txtCedula.Text}'))";
+
                     SqlCommand comando = new SqlCommand(consulta, con);
+                    SqlCommand comandoRegistro = new SqlCommand(consultaRegistro, con);
+
                     comando.ExecuteNonQuery();
+                    comandoRegistro.ExecuteNonQuery();
 
                     CargarDataGridView();
                     MessageBox.Show("Empleado registrado exitosamente");

@@ -230,12 +230,14 @@ namespace ReservacionAulas
             this.cmbCriterioBusqueda.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbCriterioBusqueda.FormattingEnabled = true;
             this.cmbCriterioBusqueda.Items.AddRange(new object[] {
-            "Num_Reservacion",
-            "Identificador_Empleado",
-            "Identificador_Usuario",
-            "Identificador_Aula",
-            "Fecha_Reservacion",
-            "Cantidad_Horas",
+            "Numero Reservacion",
+            "Nombre Empleado",
+            "Nombre Usuario",
+            "Aula",
+            "Fecha Reservacion",
+            "Hora Inicio",
+            "Hora Fin",
+            "Cantidad Horas",
             "Comentario",
             "Estado"});
             this.cmbCriterioBusqueda.Location = new System.Drawing.Point(568, 94);

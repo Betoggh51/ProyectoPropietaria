@@ -40,3 +40,5 @@ C:\Users\betog\OneDrive\Desktop\Algoritmos\C#\propietaria\ProyectoProp\Reservaci
 C:\Users\betog\OneDrive\Desktop\Algoritmos\C#\propietaria\ProyectoProp\ReservacionAulas\obj\Debug\ReservacionAulas.csproj.CopyComplete
 C:\Users\betog\OneDrive\Desktop\Algoritmos\C#\propietaria\ProyectoProp\ReservacionAulas\obj\Debug\ReservacionAulas.exe
 C:\Users\betog\OneDrive\Desktop\Algoritmos\C#\propietaria\ProyectoProp\ReservacionAulas\obj\Debug\ReservacionAulas.pdb
+C:\Users\betog\OneDrive\Desktop\Algoritmos\C#\propietaria\ProyectoProp\ReservacionAulas\obj\Debug\ReservacionAulas.frmLogin.resources
+C:\Users\betog\OneDrive\Desktop\Algoritmos\C#\propietaria\ProyectoProp\ReservacionAulas\obj\Debug\ReservacionAulas.frmRegistro.resources

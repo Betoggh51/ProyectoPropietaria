@@ -36,9 +36,17 @@ namespace ReservacionAulas
         {
             try
             {
-                string consulta = $@"SELECT * FROM EDIFICIOS 
-                                    WHERE '{cmbCriterioEdificio.Text}' LIKE '%{txtBusquedaEdificio.Text}%'";
-
+                string consulta;
+                if (cmbCriterioEdificio.Text == "Estado")
+                {
+                    consulta = $@"SELECT * FROM EDIFICIOS 
+                                        WHERE {cmbCriterioEdificio.Text} = '{txtBusquedaEdificio.Text}'";
+                }
+                else
+                {
+                    consulta = $@"SELECT * FROM EDIFICIOS 
+                                            WHERE {cmbCriterioEdificio.Text} LIKE '%{txtBusquedaEdificio.Text}%'";
+                }
                 SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(consulta, con);
                 DataTable dataTable = new DataTable();
 
@@ -66,11 +74,12 @@ namespace ReservacionAulas
                 if (modalidad == "c")
                 {
                     string consulta = $@"INSERT INTO EDIFICIOS (Descripcion, Identificador_Campus, Estado) 
-                                    VALUES('{txtDescripcion.Text}', {cmbCampus.SelectedValue}, '{cmbEstado.Text}'";
+                                    VALUES('{txtDescripcion.Text}', {cmbCampus.SelectedValue}, '{cmbEstado.Text}')";
 
                     SqlCommand comando = new SqlCommand(consulta, con);
                     comando.ExecuteNonQuery();
 
+                    CargarDataGridView();
                     dgvEdificio.Refresh();
                     MessageBox.Show("Edificio registrado exitosamente");
                 }
@@ -95,6 +104,8 @@ namespace ReservacionAulas
                     cmbCampus.Text = "";
                     cmbEstado.Text = "";
                 }
+                CargarDataGridView();
+                    dgvEdificio.Refresh();
             }
             catch (Exception ex)
             {

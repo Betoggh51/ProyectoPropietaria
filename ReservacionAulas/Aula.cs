@@ -35,9 +35,9 @@ namespace ReservacionAulas
         private void picLimpiar_Click(object sender, EventArgs e)
         {
             txtDescripcionAula.Text = "";
-            cmbTipoAula.SelectedIndex = 0;
-            cmbEstado.SelectedIndex = 0;
-            cmbEdificio.SelectedIndex = 0;
+            cmbTipoAula.SelectedIndex = -1;
+            cmbEstado.SelectedIndex = -1;
+            cmbEdificio.SelectedIndex = -1;
             nudCapacidad.Value = 0;
             nudCuposReservados.Value = 0;
 
@@ -94,7 +94,7 @@ namespace ReservacionAulas
 
                     string consulta = $@"UPDATE Aulas SET Descripcion = '{txtDescripcionAula.Text}', 
                                        Identificador_Tipo_Aula = '{cmbTipoAula.SelectedValue}',
-                                       Identificador_Edificio = {cmbEdificio.SelectedValue}, Capacidad = {nudCapacidad.Value}
+                                       Identificador_Edificio = {cmbEdificio.SelectedValue}, Capacidad = {nudCapacidad.Value},
                                        Cupos_Reservados = {nudCuposReservados.Value}, Estado  = '{cmbEstado.Text}'
                                        WHERE Identificador = {id}";
 
@@ -106,11 +106,11 @@ namespace ReservacionAulas
                     modalidad = "c";
 
                     txtDescripcionAula.Text = "";
-                    cmbTipoAula.SelectedIndex = 0;
-                    cmbEdificio.SelectedIndex = 0;
+                    cmbTipoAula.SelectedIndex = -1;
+                    cmbEdificio.SelectedIndex = -1;
                     nudCapacidad.Value = 0;
                     nudCuposReservados.Value = 0;
-                    cmbEstado.SelectedIndex = 0;
+                    cmbEstado.SelectedIndex = -1;
                 }
             }
             catch (Exception ex)
@@ -123,7 +123,11 @@ namespace ReservacionAulas
         {
             try
             {
-                string consulta = $"SELECT * FROM Aulas WHERE {cmbCriterioBusqueda}  LIKE '%{txtBusqueda.Text}%'";
+                string consulta;
+                if(cmbCriterioBusqueda.Text == "Estado")
+                    consulta = $"SELECT * FROM Aulas WHERE {cmbCriterioBusqueda.Text} = '{txtBusqueda.Text}'";
+                else
+                    consulta = $"SELECT * FROM Aulas WHERE {cmbCriterioBusqueda.Text} LIKE '%{txtBusqueda.Text}%'";
 
                 SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(consulta, con);
                 DataTable dataTable = new DataTable();
@@ -158,18 +162,18 @@ namespace ReservacionAulas
                     CargarDataGridView();
 
                     txtDescripcionAula.Text = "";
-                    cmbTipoAula.SelectedIndex = 0;
-                    cmbEdificio.SelectedIndex = 0;
+                    cmbTipoAula.SelectedIndex = -1;
+                    cmbEdificio.SelectedIndex = -1;
                     nudCapacidad.Value = 0;
                     nudCuposReservados.Value = 0;
-                    cmbEstado.SelectedIndex = 0;
+                    cmbEstado.SelectedIndex = -1;
                 }
                 catch (Exception)
                 {
                     MessageBox.Show("Debe seleccionar un registro para eliminarlo");
                 }
             }
-            
+
         }
         private void LlenarListaTipoAula()
         {
@@ -183,7 +187,7 @@ namespace ReservacionAulas
             cmbTipoAula.DisplayMember = "descripcion";
             cmbTipoAula.ValueMember = "identificador";
 
-            cmbTipoAula.SelectedIndex = 0;
+            cmbTipoAula.SelectedIndex = -1;
         }
         private void LlenarListaEdificio()
         {
@@ -196,7 +200,7 @@ namespace ReservacionAulas
             cmbEdificio.DisplayMember = "descripcion";
             cmbEdificio.ValueMember = "identificador";
 
-            cmbEdificio.SelectedIndex = 0;
+            cmbEdificio.SelectedIndex = -1;
         }
 
         private void picBuscar_Click(object sender, EventArgs e)

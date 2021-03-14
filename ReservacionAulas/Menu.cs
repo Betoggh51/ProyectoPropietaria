@@ -19,7 +19,6 @@ namespace ReservacionAulas
 
         private void Menu_Load(object sender, EventArgs e)
         {
-
         }
 
         private void campusToolStripMenuItem_Click(object sender, EventArgs e)
@@ -62,6 +61,14 @@ namespace ReservacionAulas
         {
             ReservacionHoras reservacionHoras = new ReservacionHoras();
             reservacionHoras.ShowDialog();
+        }
+
+        private void cerrarSesiónToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            frmLogin login = new frmLogin();
+            login.ShowDialog();
+            this.Close();
         }
     }
 }
