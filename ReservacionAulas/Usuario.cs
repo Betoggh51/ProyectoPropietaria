@@ -41,10 +41,12 @@ namespace ReservacionAulas
             {
                 string consulta;
                 if(cmbCriterioBusqueda.Text == "Estado")
-                    consulta = $@"SELECT * FROM Usuarios 
+                    consulta = $@"SELECT Identificador, Nombre, Cedula, No_Carnet, Tipo_Usuario,
+                                  Estado FROM Usuarios 
                                   WHERE Estado = '{txtBusqueda.Text}'";
                 else
-                    consulta = $@"SELECT * FROM Usuarios 
+                    consulta = $@"SELECT Identificador, Nombre, Cedula, No_Carnet, Tipo_Usuario,
+                                  Estado FROM Usuarios 
                                   WHERE {cmbCriterioBusqueda.Text} LIKE '%{txtBusqueda.Text}%'";
 
                 SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(consulta, con);
