@@ -77,9 +77,10 @@ namespace ReservacionAulas
                 if (modalidad == "c")
                 {
                     string consulta = $@"INSERT INTO Aulas (Descripcion, Identificador_Tipo_Aula,
-                                Identificador_Edificio, Capacidad, Cupos_reservados, Estado) VALUES(';
-                                {txtDescripcionAula.Text}', '{cmbTipoAula.SelectedValue}', {cmbEdificio.SelectedValue},
-                                {nudCapacidad.Value}, {nudCuposReservados.Value},'{cmbEstado.Text}')";
+                                Identificador_Edificio, Capacidad, Cupos_reservados, Estado) 
+                                VALUES ('{txtDescripcionAula.Text}', '{cmbTipoAula.SelectedValue}',
+                                {cmbEdificio.SelectedValue}, {nudCapacidad.Value}, 
+                                {nudCuposReservados.Value},'{cmbEstado.Text}')";
 
                     SqlCommand comando = new SqlCommand(consulta, con);
                     comando.ExecuteNonQuery();

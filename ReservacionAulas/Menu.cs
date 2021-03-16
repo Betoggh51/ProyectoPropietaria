@@ -12,15 +12,24 @@ namespace ReservacionAulas
 {
     public partial class Menu : MetroFramework.Forms.MetroForm
     {
-        public Menu()
+        string tipoUsuario;
+        public Menu(string tipoUsuario)
         {
             InitializeComponent();
+            this.tipoUsuario = tipoUsuario;
         }
-
         private void Menu_Load(object sender, EventArgs e)
         {
-        }
+            if(tipoUsuario != "Empleado")
+            {
+                campusToolStripMenuItem.Visible = false;
+                edificiosToolStripMenuItem.Visible = false;
+                tiposAulasToolStripMenuItem.Visible = false;
+                usuariosToolStripMenuItem.Visible = false;
+                empleadosToolStripMenuItem.Visible = false;
 
+            }
+        }
         private void campusToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Campus campus = new Campus();

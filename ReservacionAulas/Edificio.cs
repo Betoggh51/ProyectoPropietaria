@@ -149,8 +149,8 @@ namespace ReservacionAulas
                     CargarDataGridView();
 
                     txtDescripcion.Text = "";
-                    cmbCampus.Text = "";
-                    cmbEstado.Text = "";
+                    cmbCampus.SelectedIndex = -1;
+                    cmbEstado.SelectedIndex = -1;
                 }
                 catch (Exception)
                 {
@@ -181,7 +181,7 @@ namespace ReservacionAulas
             cmbCampus.DisplayMember = "descripcion";
             cmbCampus.ValueMember = "identificador";
 
-            cmbCampus.SelectedIndex = 0;
+            cmbCampus.SelectedIndex = -1;
         }
 
         private void picBuscar_Click(object sender, EventArgs e)

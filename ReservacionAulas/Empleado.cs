@@ -121,15 +121,8 @@ namespace ReservacionAulas
                                      VALUES ('{txtNombre.Text}', '{txtCedula.Text}', '{cmbTandaLaboral.Text}', '{fechaIngreso}', 
                                      '{cmbEstado.Text}')";
 
-                    string nombre = txtNombre.Text.Trim();
-                    string consultaRegistro = $@"INSERT INTO Registro (Nombre_Usuario, Clave)
-                                                   VALUES('{nombre}', HASHBYTES('SHA2_256','{txtCedula.Text}'))";
-
                     SqlCommand comando = new SqlCommand(consulta, con);
-                    SqlCommand comandoRegistro = new SqlCommand(consultaRegistro, con);
-
                     comando.ExecuteNonQuery();
-                    comandoRegistro.ExecuteNonQuery();
 
                     CargarDataGridView();
                     MessageBox.Show("Empleado registrado exitosamente");

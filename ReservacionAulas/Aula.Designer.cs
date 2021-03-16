@@ -88,9 +88,12 @@ namespace ReservacionAulas
             // 
             // dgvAulas
             // 
+            this.dgvAulas.AllowUserToAddRows = false;
+            this.dgvAulas.AllowUserToDeleteRows = false;
             this.dgvAulas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAulas.Location = new System.Drawing.Point(362, 161);
             this.dgvAulas.Name = "dgvAulas";
+            this.dgvAulas.ReadOnly = true;
             this.dgvAulas.RowHeadersWidth = 51;
             this.dgvAulas.RowTemplate.Height = 24;
             this.dgvAulas.Size = new System.Drawing.Size(681, 351);

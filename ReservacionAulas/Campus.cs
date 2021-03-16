@@ -43,7 +43,10 @@ namespace ReservacionAulas
             try
             {
                 string consulta = "SELECT * FROM CAMPUS ";
-                consulta += " WHERE " + cmbCriterioCampus.Text + " LIKE '%" + txtBusquedaCampus.Text + "%'";
+                if (cmbCriterioCampus.Text == "Estado")
+                    consulta += $"WHERE {cmbCriterioCampus.Text} = '{txtBusquedaCampus.Text}'";
+                else
+                    consulta += $"WHERE {cmbCriterioCampus.Text} LIKE '%{txtBusquedaCampus.Text}%'";
 
                 SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(consulta, con);
                 DataTable dataTable = new DataTable();

@@ -109,9 +109,10 @@ namespace ReservacionAulas
             {
                 if (modalidad == "c")
                 {
-                    string consulta = $@"INSERT INTO USUARIOS (NOMBRE, CEDULA, NO_CARNET, TIPO_USUARIO, ESTADO)
-                                      VALUES ('{txtNombre.Text}', '{txtCedula.Text}', '{txtCarnet.Text}', 
-                                      '{cmbTipoUsuario.Text}', '{cmbEstado.Text}')";
+                    string consulta = $@"INSERT INTO USUARIOS (NOMBRE, CEDULA, NO_CARNET, TIPO_USUARIO, ESTADO, Clave)
+                                      VALUES ('{txtNombre.Text}', '{txtCedula.Text}', 
+                                        '{txtCarnet.Text}', '{cmbTipoUsuario.Text}', '{cmbEstado.Text}',
+                                        HASHBYTES('SHA2_256', '{txtCedula.Text}'))";
 
                     SqlCommand comando = new SqlCommand(consulta, con);
                     comando.ExecuteNonQuery();

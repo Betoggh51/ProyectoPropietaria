@@ -33,8 +33,9 @@ namespace ReservacionAulas
                 return;
             }
 
-            string consulta = @"SELECT COUNT(Clave) FROM Registro WHERE Clave = HASHBYTES('SHA2_256', @Clave)
-                                    AND Nombre_Usuario = @Nombre";
+            string consulta = @"SELECT COUNT(Cedula) FROM Usuarios WHERE Clave = HASHBYTES('SHA2_256', @Clave)
+                                    AND Nombre = @Nombre";
+            
             con.Open();
             SqlCommand command = new SqlCommand(consulta, con);
             command.Parameters.Add("@Nombre", SqlDbType.VarChar);
@@ -50,10 +51,20 @@ namespace ReservacionAulas
                 return;
             }
 
+            string consultaTipoUsuario = $@"SELECT Tipo_Usuario from Usuarios WHERE Clave = HASHBYTES('SHA2_256', @Cedula)
+                                        AND Nombre = @Nombre";
+
+            SqlCommand command2 = new SqlCommand(consultaTipoUsuario, con);
+            command2.Parameters.Add("@Nombre", SqlDbType.VarChar);
+            command2.Parameters["@Nombre"].Value = txtUsuario.Text;
+            command2.Parameters.Add("@Cedula", SqlDbType.VarChar);
+            command2.Parameters["@Cedula"].Value = txtClave.Text;
+
+            string tipoUsuario = command2.ExecuteScalar().ToString();
             con.Close();
 
             this.Hide();
-            Menu menu = new Menu();
+            Menu menu = new Menu(tipoUsuario);
             menu.Closed += (s, args) => this.Close();
             menu.Show();
 

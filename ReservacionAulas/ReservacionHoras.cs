@@ -100,13 +100,13 @@ namespace ReservacionAulas
                     MessageBox.Show("Reserva modificada exitosamente");
                     modalidad = "c";
 
-                    cmbEmpleado.SelectedIndex = 0;
-                    cmbUsuario.SelectedIndex = 0;
-                    cmbAula.SelectedIndex = 0;
+                    cmbEmpleado.SelectedIndex = -1;
+                    cmbUsuario.SelectedIndex = -1;
+                    cmbAula.SelectedIndex = -1;
                     dtpFecha.Value = DateTime.Now;
                     txtCantidadHoras.Text = "0";
                     txtComentario.Text = "";
-                    cmbEstado.SelectedIndex = 0;
+                    cmbEstado.SelectedIndex = -1;
                 }
             }
             catch (Exception ex)

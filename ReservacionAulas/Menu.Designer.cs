@@ -31,6 +31,7 @@ namespace ReservacionAulas
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Menu));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.cerrarSesiónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mantenimientoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.campusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.edificiosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -39,7 +40,6 @@ namespace ReservacionAulas
             this.usuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.empleadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reservacionHorasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cerrarSesiónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -56,6 +56,13 @@ namespace ReservacionAulas
             this.menuStrip1.Size = new System.Drawing.Size(610, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
+            // 
+            // cerrarSesiónToolStripMenuItem
+            // 
+            this.cerrarSesiónToolStripMenuItem.Name = "cerrarSesiónToolStripMenuItem";
+            this.cerrarSesiónToolStripMenuItem.Size = new System.Drawing.Size(110, 24);
+            this.cerrarSesiónToolStripMenuItem.Text = "Cerrar Sesión";
+            this.cerrarSesiónToolStripMenuItem.Click += new System.EventHandler(this.cerrarSesiónToolStripMenuItem_Click);
             // 
             // mantenimientoToolStripMenuItem
             // 
@@ -74,58 +81,51 @@ namespace ReservacionAulas
             // campusToolStripMenuItem
             // 
             this.campusToolStripMenuItem.Name = "campusToolStripMenuItem";
-            this.campusToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
+            this.campusToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.campusToolStripMenuItem.Text = "Campus";
             this.campusToolStripMenuItem.Click += new System.EventHandler(this.campusToolStripMenuItem_Click);
             // 
             // edificiosToolStripMenuItem
             // 
             this.edificiosToolStripMenuItem.Name = "edificiosToolStripMenuItem";
-            this.edificiosToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
+            this.edificiosToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.edificiosToolStripMenuItem.Text = "Edificios";
             this.edificiosToolStripMenuItem.Click += new System.EventHandler(this.edificiosToolStripMenuItem_Click);
             // 
             // tiposAulasToolStripMenuItem
             // 
             this.tiposAulasToolStripMenuItem.Name = "tiposAulasToolStripMenuItem";
-            this.tiposAulasToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
+            this.tiposAulasToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.tiposAulasToolStripMenuItem.Text = "Tipos Aulas";
             this.tiposAulasToolStripMenuItem.Click += new System.EventHandler(this.tiposAulasToolStripMenuItem_Click);
             // 
             // aulasToolStripMenuItem
             // 
             this.aulasToolStripMenuItem.Name = "aulasToolStripMenuItem";
-            this.aulasToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
+            this.aulasToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.aulasToolStripMenuItem.Text = "Aulas";
             this.aulasToolStripMenuItem.Click += new System.EventHandler(this.aulasToolStripMenuItem_Click);
             // 
             // usuariosToolStripMenuItem
             // 
             this.usuariosToolStripMenuItem.Name = "usuariosToolStripMenuItem";
-            this.usuariosToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
+            this.usuariosToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.usuariosToolStripMenuItem.Text = "Usuarios";
             this.usuariosToolStripMenuItem.Click += new System.EventHandler(this.usuariosToolStripMenuItem_Click);
             // 
             // empleadosToolStripMenuItem
             // 
             this.empleadosToolStripMenuItem.Name = "empleadosToolStripMenuItem";
-            this.empleadosToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
+            this.empleadosToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.empleadosToolStripMenuItem.Text = "Empleados";
             this.empleadosToolStripMenuItem.Click += new System.EventHandler(this.empleadosToolStripMenuItem_Click);
             // 
             // reservacionHorasToolStripMenuItem
             // 
             this.reservacionHorasToolStripMenuItem.Name = "reservacionHorasToolStripMenuItem";
-            this.reservacionHorasToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
+            this.reservacionHorasToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.reservacionHorasToolStripMenuItem.Text = "Reservacion Horas";
             this.reservacionHorasToolStripMenuItem.Click += new System.EventHandler(this.reservacionHorasToolStripMenuItem_Click);
-            // 
-            // cerrarSesiónToolStripMenuItem
-            // 
-            this.cerrarSesiónToolStripMenuItem.Name = "cerrarSesiónToolStripMenuItem";
-            this.cerrarSesiónToolStripMenuItem.Size = new System.Drawing.Size(110, 24);
-            this.cerrarSesiónToolStripMenuItem.Text = "Cerrar Sesión";
-            this.cerrarSesiónToolStripMenuItem.Click += new System.EventHandler(this.cerrarSesiónToolStripMenuItem_Click);
             // 
             // pictureBox1
             // 
