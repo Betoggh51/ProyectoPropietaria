@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Diagnostics;
+using System.IO;
 
 namespace ReservacionAulas
 {
@@ -15,6 +17,8 @@ namespace ReservacionAulas
     {
         SqlConnection con = null;
         string modalidad = "c";
+        DataTable dataTable = new DataTable();
+        string path = @"\Users\betog\OneDrive\Desktop\Algoritmos\C#\propietaria\ProyectoProp\edificio.csv";
         public Edificio()
         {
             InitializeComponent();
@@ -48,7 +52,7 @@ namespace ReservacionAulas
                                             WHERE {cmbCriterioEdificio.Text} LIKE '%{txtBusquedaEdificio.Text}%'";
                 }
                 SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(consulta, con);
-                DataTable dataTable = new DataTable();
+                dataTable = new DataTable();
 
                 sqlDataAdapter.Fill(dataTable);
 
@@ -187,6 +191,38 @@ namespace ReservacionAulas
         private void picBuscar_Click(object sender, EventArgs e)
         {
             CargarDataGridView();
+        }
+
+        private void picExportar_Click(object sender, EventArgs e)
+        {
+            writeFileHeader("sep=,");
+            writeFileLine("Identificador, Descripcion, Campus, Estado");
+
+            foreach (DataRow row in dataTable.Rows)
+            {
+                string linea = "";
+                foreach (DataColumn dc in dataTable.Columns)
+                {
+                    linea += row[dc].ToString() + ",";
+                }
+                writeFileLine(linea);
+            }
+
+            Process.Start(@path);
+        }
+        private void writeFileLine(string pLine)
+        {
+            using (StreamWriter w = File.AppendText(path))
+            {
+                w.WriteLine(pLine);
+            }
+        }
+        private void writeFileHeader(string pLine)
+        {
+            using (StreamWriter w = File.CreateText(path))
+            {
+                w.WriteLine(pLine);
+            }
         }
     }
 }

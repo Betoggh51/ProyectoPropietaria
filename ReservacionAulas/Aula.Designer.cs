@@ -51,6 +51,7 @@ namespace ReservacionAulas
             this.picLimpiar = new System.Windows.Forms.PictureBox();
             this.nudCapacidad = new System.Windows.Forms.NumericUpDown();
             this.nudCuposReservados = new System.Windows.Forms.NumericUpDown();
+            this.picExportar = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAulas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBuscar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picGuardar)).BeginInit();
@@ -58,6 +59,7 @@ namespace ReservacionAulas
             ((System.ComponentModel.ISupportInitialize)(this.picLimpiar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCapacidad)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCuposReservados)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picExportar)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -230,7 +232,7 @@ namespace ReservacionAulas
             // 
             this.picGuardar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("picGuardar.BackgroundImage")));
             this.picGuardar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picGuardar.Location = new System.Drawing.Point(146, 458);
+            this.picGuardar.Location = new System.Drawing.Point(118, 458);
             this.picGuardar.Name = "picGuardar";
             this.picGuardar.Size = new System.Drawing.Size(56, 54);
             this.picGuardar.TabIndex = 38;
@@ -241,7 +243,7 @@ namespace ReservacionAulas
             // 
             this.picEliminar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("picEliminar.BackgroundImage")));
             this.picEliminar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picEliminar.Location = new System.Drawing.Point(218, 458);
+            this.picEliminar.Location = new System.Drawing.Point(190, 458);
             this.picEliminar.Name = "picEliminar";
             this.picEliminar.Size = new System.Drawing.Size(56, 54);
             this.picEliminar.TabIndex = 37;
@@ -252,7 +254,7 @@ namespace ReservacionAulas
             // 
             this.picLimpiar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("picLimpiar.BackgroundImage")));
             this.picLimpiar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picLimpiar.Location = new System.Drawing.Point(75, 458);
+            this.picLimpiar.Location = new System.Drawing.Point(47, 458);
             this.picLimpiar.Name = "picLimpiar";
             this.picLimpiar.Size = new System.Drawing.Size(56, 54);
             this.picLimpiar.TabIndex = 39;
@@ -283,11 +285,23 @@ namespace ReservacionAulas
             this.nudCuposReservados.Size = new System.Drawing.Size(143, 22);
             this.nudCuposReservados.TabIndex = 41;
             // 
+            // picExportar
+            // 
+            this.picExportar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("picExportar.BackgroundImage")));
+            this.picExportar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.picExportar.Location = new System.Drawing.Point(260, 458);
+            this.picExportar.Name = "picExportar";
+            this.picExportar.Size = new System.Drawing.Size(56, 54);
+            this.picExportar.TabIndex = 42;
+            this.picExportar.TabStop = false;
+            this.picExportar.Click += new System.EventHandler(this.picExportar_Click);
+            // 
             // Aula
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1066, 547);
+            this.Controls.Add(this.picExportar);
             this.Controls.Add(this.nudCuposReservados);
             this.Controls.Add(this.nudCapacidad);
             this.Controls.Add(this.picLimpiar);
@@ -320,6 +334,7 @@ namespace ReservacionAulas
             ((System.ComponentModel.ISupportInitialize)(this.picLimpiar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCapacidad)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCuposReservados)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picExportar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -348,5 +363,6 @@ namespace ReservacionAulas
         private System.Windows.Forms.PictureBox picLimpiar;
         private System.Windows.Forms.NumericUpDown nudCapacidad;
         private System.Windows.Forms.NumericUpDown nudCuposReservados;
+        private System.Windows.Forms.PictureBox picExportar;
     }
 }

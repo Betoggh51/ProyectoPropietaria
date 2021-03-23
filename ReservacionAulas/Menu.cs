@@ -27,7 +27,6 @@ namespace ReservacionAulas
                 tiposAulasToolStripMenuItem.Visible = false;
                 usuariosToolStripMenuItem.Visible = false;
                 empleadosToolStripMenuItem.Visible = false;
-
             }
         }
         private void campusToolStripMenuItem_Click(object sender, EventArgs e)

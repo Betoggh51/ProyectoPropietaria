@@ -57,11 +57,13 @@ namespace ReservacionAulas
             this.dtpHoraFin = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
+            this.picExportar = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvReservacion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBuscar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picGuardar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picEliminar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLimpiar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picExportar)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvReservacion
@@ -256,7 +258,7 @@ namespace ReservacionAulas
             // 
             this.picGuardar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("picGuardar.BackgroundImage")));
             this.picGuardar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picGuardar.Location = new System.Drawing.Point(165, 476);
+            this.picGuardar.Location = new System.Drawing.Point(125, 476);
             this.picGuardar.Name = "picGuardar";
             this.picGuardar.Size = new System.Drawing.Size(56, 54);
             this.picGuardar.TabIndex = 44;
@@ -267,7 +269,7 @@ namespace ReservacionAulas
             // 
             this.picEliminar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("picEliminar.BackgroundImage")));
             this.picEliminar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picEliminar.Location = new System.Drawing.Point(237, 476);
+            this.picEliminar.Location = new System.Drawing.Point(197, 476);
             this.picEliminar.Name = "picEliminar";
             this.picEliminar.Size = new System.Drawing.Size(56, 54);
             this.picEliminar.TabIndex = 43;
@@ -287,7 +289,7 @@ namespace ReservacionAulas
             // 
             this.picLimpiar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("picLimpiar.BackgroundImage")));
             this.picLimpiar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picLimpiar.Location = new System.Drawing.Point(93, 476);
+            this.picLimpiar.Location = new System.Drawing.Point(53, 476);
             this.picLimpiar.Name = "picLimpiar";
             this.picLimpiar.Size = new System.Drawing.Size(56, 54);
             this.picLimpiar.TabIndex = 48;
@@ -340,11 +342,23 @@ namespace ReservacionAulas
             this.label12.TabIndex = 55;
             this.label12.Text = "Hora Inicio:";
             // 
+            // picExportar
+            // 
+            this.picExportar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("picExportar.BackgroundImage")));
+            this.picExportar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.picExportar.Location = new System.Drawing.Point(272, 476);
+            this.picExportar.Name = "picExportar";
+            this.picExportar.Size = new System.Drawing.Size(56, 54);
+            this.picExportar.TabIndex = 56;
+            this.picExportar.TabStop = false;
+            this.picExportar.Click += new System.EventHandler(this.picExportar_Click);
+            // 
             // ReservacionHoras
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1116, 565);
+            this.Controls.Add(this.picExportar);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dtpHoraFin);
@@ -381,6 +395,7 @@ namespace ReservacionAulas
             ((System.ComponentModel.ISupportInitialize)(this.picGuardar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picEliminar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLimpiar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picExportar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -414,5 +429,6 @@ namespace ReservacionAulas
         private System.Windows.Forms.DateTimePicker dtpHoraFin;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.PictureBox picExportar;
     }
 }

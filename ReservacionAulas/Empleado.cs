@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Diagnostics;
+using System.IO;
 
 namespace ReservacionAulas
 {
@@ -15,6 +17,8 @@ namespace ReservacionAulas
     {
         string modalidad = "c";
         SqlConnection con = null;
+        DataTable dataTable = new DataTable();
+        string path = @"\Users\betog\OneDrive\Desktop\Algoritmos\C#\propietaria\ProyectoProp\empleado.csv";
         public Empleado()
         {
             InitializeComponent();
@@ -84,7 +88,7 @@ namespace ReservacionAulas
                                 WHERE {cmbCriterioBusqueda.Text} LIKE '%{txtBusquedaEmpleado.Text}%'";
 
                 SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(consulta, con);
-                DataTable dataTable = new DataTable();
+                dataTable = new DataTable();
 
                 sqlDataAdapter.Fill(dataTable);
 
@@ -206,5 +210,38 @@ namespace ReservacionAulas
             else
                 return false;
         }
+
+        private void picExportar_Click(object sender, EventArgs e)
+        {
+            writeFileHeader("sep=,");
+            writeFileLine("Identificador, Nombre, Cedula, Tanda Laboral, Fecha Ingreso, Estado");
+
+            foreach (DataRow row in dataTable.Rows)
+            {
+                string linea = "";
+                foreach (DataColumn dc in dataTable.Columns)
+                {
+                    linea += row[dc].ToString() + ",";
+                }
+                writeFileLine(linea);
+            }
+
+            Process.Start(@path);
+        }
+        private void writeFileLine(string pLine)
+        {
+            using (StreamWriter w = File.AppendText(path))
+            {
+                w.WriteLine(pLine);
+            }
+        }
+        private void writeFileHeader(string pLine)
+        {
+            using (StreamWriter w = File.CreateText(path))
+            {
+                w.WriteLine(pLine);
+            }
+        }
     }
 }
+

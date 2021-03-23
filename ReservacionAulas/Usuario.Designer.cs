@@ -49,11 +49,13 @@ namespace ReservacionAulas
             this.picEliminar = new System.Windows.Forms.PictureBox();
             this.cmbCriterioBusqueda = new System.Windows.Forms.ComboBox();
             this.picLimpiar = new System.Windows.Forms.PictureBox();
+            this.picExportar = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsuarios)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBuscar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picGuardar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picEliminar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLimpiar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picExportar)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -208,7 +210,7 @@ namespace ReservacionAulas
             // 
             this.picGuardar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("picGuardar.BackgroundImage")));
             this.picGuardar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picGuardar.Location = new System.Drawing.Point(159, 361);
+            this.picGuardar.Location = new System.Drawing.Point(121, 361);
             this.picGuardar.Name = "picGuardar";
             this.picGuardar.Size = new System.Drawing.Size(56, 54);
             this.picGuardar.TabIndex = 47;
@@ -219,7 +221,7 @@ namespace ReservacionAulas
             // 
             this.picEliminar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("picEliminar.BackgroundImage")));
             this.picEliminar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picEliminar.Location = new System.Drawing.Point(231, 361);
+            this.picEliminar.Location = new System.Drawing.Point(193, 361);
             this.picEliminar.Name = "picEliminar";
             this.picEliminar.Size = new System.Drawing.Size(56, 54);
             this.picEliminar.TabIndex = 46;
@@ -246,18 +248,30 @@ namespace ReservacionAulas
             // 
             this.picLimpiar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("picLimpiar.BackgroundImage")));
             this.picLimpiar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picLimpiar.Location = new System.Drawing.Point(90, 361);
+            this.picLimpiar.Location = new System.Drawing.Point(52, 361);
             this.picLimpiar.Name = "picLimpiar";
             this.picLimpiar.Size = new System.Drawing.Size(56, 54);
             this.picLimpiar.TabIndex = 49;
             this.picLimpiar.TabStop = false;
             this.picLimpiar.Click += new System.EventHandler(this.picLimpiar_Click);
             // 
+            // picExportar
+            // 
+            this.picExportar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("picExportar.BackgroundImage")));
+            this.picExportar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.picExportar.Location = new System.Drawing.Point(264, 361);
+            this.picExportar.Name = "picExportar";
+            this.picExportar.Size = new System.Drawing.Size(56, 54);
+            this.picExportar.TabIndex = 58;
+            this.picExportar.TabStop = false;
+            this.picExportar.Click += new System.EventHandler(this.picExportar_Click);
+            // 
             // Usuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1052, 452);
+            this.Controls.Add(this.picExportar);
             this.Controls.Add(this.picLimpiar);
             this.Controls.Add(this.cmbCriterioBusqueda);
             this.Controls.Add(this.picGuardar);
@@ -286,6 +300,7 @@ namespace ReservacionAulas
             ((System.ComponentModel.ISupportInitialize)(this.picGuardar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picEliminar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLimpiar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picExportar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -312,5 +327,6 @@ namespace ReservacionAulas
         private System.Windows.Forms.PictureBox picEliminar;
         private System.Windows.Forms.ComboBox cmbCriterioBusqueda;
         private System.Windows.Forms.PictureBox picLimpiar;
+        private System.Windows.Forms.PictureBox picExportar;
     }
 }
