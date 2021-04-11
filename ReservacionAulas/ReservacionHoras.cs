@@ -77,7 +77,8 @@ namespace ReservacionAulas
                     string consulta = $@"INSERT INTO Reservaciones_Aulas (Identificador_Empleado, Identificador_Usuario,
                                       Identificador_Aula, Fecha_Reservacion,Hora_Inicio, Hora_Fin, Cantidad_Horas, Comentario, Estado)
                                       VALUES ({cmbEmpleado.SelectedValue}, {cmbUsuario.SelectedValue}, {cmbAula.SelectedValue}, '{dtpFecha.Value}',
-                                      '{dtpHoraInicio.Value}', '{dtpHoraFin.Value}','{cantidadHoras}', '{txtComentario.Text}', '{cmbEstado.Text}')";
+                                      '{dtpHoraInicio.Value}', '{dtpHoraFin.Value}','{cantidadHoras}', '{txtComentario.Text}', '{cmbEstado.Text}');
+                                        UPDATE AULAS SET Cupos_Reservados = Cupos_Reservados + 1 WHERE Identificador = {cmbAula.SelectedValue}";
 
                     SqlCommand comando = new SqlCommand(consulta, con);
                     comando.ExecuteNonQuery();
@@ -190,7 +191,8 @@ namespace ReservacionAulas
                     DataGridViewRow fila = this.dgvReservacion.SelectedRows[0];
                     string id = fila.Cells[0].Value.ToString();
 
-                    string consulta = $"DELETE FROM Reservaciones_Aulas WHERE Num_Reservacion = {id}";
+                    string consulta = $"DELETE FROM Reservaciones_Aulas WHERE Num_Reservacion = {id};" +
+                        $"UPDATE AULAS SET Cupos_Reservados = Cupos_Reservados - 1 WHERE Identificador = {cmbAula.SelectedValue}";
 
                     SqlCommand comando = new SqlCommand(consulta, con);
                     comando.ExecuteNonQuery();

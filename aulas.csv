@@ -1,0 +1,7 @@
+sep=,
+Identificador, Descripcion, Tipo Aula, Edificio, Capacidad, Cupos Reservados, Estado
+1,0237,1,10,25,9,Activo,
+2,0101,1,10,30,0,Activo,
+4,0321,3,10,30,28,Inactivo,
+6,0141,1,10,30,16,Activo,
+8,0102,1,10,30,11,Activo,

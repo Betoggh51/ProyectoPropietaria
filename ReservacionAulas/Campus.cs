@@ -191,10 +191,10 @@ namespace ReservacionAulas
                 foreach (DataColumn dc in dataTable.Columns)
                 {
                     linea += row[dc].ToString() + ",";
+                    //WriteDocument(path, linea);
                 }
                 writeFileLine(linea);
             }
-
             Process.Start(@path);
         }
         private void writeFileLine(string pLine)
@@ -210,6 +210,10 @@ namespace ReservacionAulas
             {
                 w.WriteLine(pLine);
             }
+        }
+        private void WriteDocument(string path, string content)
+        {
+            File.WriteAllText(path, content, Encoding.UTF8);
         }
     }
 }
